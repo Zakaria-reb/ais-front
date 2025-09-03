@@ -55,7 +55,7 @@ const HomeSection = ({ isScrolled }) => {
         ${currentView === 0 && !isTransitioning ? 'opacity-100 visible' : 'opacity-0 invisible'}
       `}>
         
-        <div className="relative w-full h-full flex flex-col items-center justify-center px-6 md:px-12 pt-20 md:pt-24">
+        <div className="relative w-full h-full flex flex-col items-center justify-center px-6 md:px-12">
           {/* Enhanced Logo with Cyber Effects */}
           
           <div className="mb-8 relative">

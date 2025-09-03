@@ -1,0 +1,136 @@
+import React from "react";
+import ScrollIndicator from "../components/ScrollIndicator";
+
+const EventsSection = () => {
+  const handleScroll = () => {
+    const viewportHeight = window.innerHeight;
+    window.scrollTo({
+      top: viewportHeight * 4,
+      behavior: 'smooth'
+    });
+  };
+
+  const events = [
+    {
+      name: "TechFest 2025",
+      description: "Annual technology festival showcasing innovation",
+      date: "March 2025",
+      type: "FESTIVAL",
+      color: "from-purple-600 to-pink-600"
+    },
+    {
+      name: "Innovation Summit",
+      description: "Conference bringing together industry leaders",
+      date: "June 2025", 
+      type: "CONFERENCE",
+      color: "from-blue-600 to-cyan-600"
+    },
+    {
+      name: "Demo Day",
+      description: "Students present groundbreaking projects",
+      date: "October 2025",
+      type: "SHOWCASE",
+      color: "from-green-600 to-teal-600"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen relative bg-gradient-to-br from-cyber-dark via-cyber-darker to-cyber-darkest overflow-hidden" id="events-section">
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-32 right-20 w-40 h-40 border-2 border-cyber-blue/20 rotate-45 animate-spin-slow"></div>
+        <div className="absolute bottom-32 left-16 w-28 h-28 border border-cyan-400/30 rounded-full animate-pulse"></div>
+      </div>
+
+      <div className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-12 py-24">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-block mb-4">
+            <span className="font-fira text-sm text-cyan-400 bg-cyan-400/10 px-4 py-2 rounded-full border border-cyan-400/30">
+              [EVENT_MATRIX]
+            </span>
+          </div>
+          <h2 className="font-orbitron text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+              SIGNATURE EVENTS
+            </span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto"></div>
+        </div>
+
+        {/* Events Timeline */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyber-blue via-cyan-400 to-purple-400 rounded-full"></div>
+            
+            <div className="space-y-16">
+              {events.map((event, index) => (
+                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                  {/* Content Card */}
+                  <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
+                    <div className="group bg-black/40 border border-cyber-blue/20 rounded-xl p-6 backdrop-blur-sm hover:border-cyan-400/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-400/20">
+                      {/* Event Type Badge */}
+                      <div className="inline-block mb-4">
+                        <span className={`font-fira text-xs px-3 py-1 rounded-full bg-gradient-to-r ${event.color} text-white font-semibold tracking-wider`}>
+                          {event.type}
+                        </span>
+                      </div>
+                      
+                      <h3 className="font-orbitron text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">
+                        {event.name}
+                      </h3>
+                      
+                      <p className="font-rajdhani text-gray-300 mb-4 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                        {event.description}
+                      </p>
+                      
+                      <div className="text-sm font-fira text-cyber-blue">
+                        {event.date}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Timeline Node */}
+                  <div className="w-2/12 flex justify-center relative z-10">
+                    <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${event.color} border-4 border-cyber-dark shadow-lg shadow-cyan-400/30 animate-pulse`}></div>
+                  </div>
+                  
+                  {/* Date Side */}
+                  <div className={`w-5/12 ${index % 2 === 0 ? 'pl-8 text-left' : 'pr-8 text-right'}`}>
+                    <div className="font-orbitron text-2xl font-bold text-gray-400">
+                      {event.date.split(' ')[0]}
+                      <div className="text-sm text-gray-500">{event.date.split(' ')[1]}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Description */}
+        <div className="text-center max-w-4xl mx-auto">
+          <p className="font-rajdhani text-lg text-white/80 leading-relaxed mb-8">
+            Experience transformative events that shape the future of technology. Our signature events bring together 
+            the brightest minds in tech, creating opportunities for learning, networking, and showcasing innovation.
+          </p>
+          <div className="flex justify-center">
+            <div className="bg-black/30 border border-cyan-400/20 rounded-lg px-6 py-3">
+              <span className="font-fira text-sm text-cyan-400">
+                NEXT_EVENT: <span className="text-green-400">INITIALIZING...</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      <ScrollIndicator
+        onClick={handleScroll}
+        text="Connect With Us"
+      />
+    </div>
+  );
+};
+
+export default EventsSection;

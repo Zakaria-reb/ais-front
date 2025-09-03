@@ -5,7 +5,7 @@ const ActivitiesSection = () => {
   const handleScroll = () => {
     const viewportHeight = window.innerHeight;
     window.scrollTo({
-      top: viewportHeight * 6.7, // Scroll to events section
+      top: viewportHeight * 4, // Scroll to events section
       behavior: 'smooth'
     });
   };
@@ -115,7 +115,7 @@ const ActivitiesSection = () => {
      
       <ScrollIndicator
         onClick={handleScroll}
-        text="Explore Our Events"
+        text="Explore Our\n Events"
       />
     </div>
   );

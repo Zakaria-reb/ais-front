@@ -21,7 +21,7 @@ const AboutSection = () => {
   const handleScroll = () => {
     const viewportHeight = window.innerHeight;
     window.scrollTo({
-      top: viewportHeight * 4.5,
+      top: viewportHeight * ,
       behavior: 'smooth'
     });
   };

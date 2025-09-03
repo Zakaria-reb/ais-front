@@ -72,21 +72,21 @@ const HomeSection = ({ isScrolled }) => {
           <div className="text-center space-y-8 max-w-5xl mx-auto relative z-10">
             <div className="relative">
               <h1 className="
-                  font-orbitron font-bold text-2xl md:text-3xl lg:text-4xl
-                  bg-gradient-to-r from-white via-cyan-300 to-blue-400
-                  bg-clip-text text-transparent
-                  tracking-wider leading-snug
-                  mb-4
-                  relative
-                  text-center
-                  animate-pulse
-                "
-                style={{
-                  textShadow: '0 0 25px rgba(0, 200, 255, 0.8), 0 0 50px rgba(0, 200, 255, 0.4)',
-                  filter: 'drop-shadow(0 2px 10px rgba(0, 200, 255, 0.5))'
-                }}>
-                  INNOVATION × APPLICATION
-                </h1>
+                font-orbitron font-bold text-2xl md:text-3xl lg:text-4xl
+                bg-gradient-to-r from-white via-cyan-300 to-blue-400
+                bg-clip-text text-transparent
+                tracking-wider leading-snug
+                mb-4
+                relative
+                text-center
+                animate-pulse
+              "
+              style={{
+                textShadow: '0 0 25px rgba(0, 200, 255, 0.8), 0 0 50px rgba(0, 200, 255, 0.4)',
+                filter: 'drop-shadow(0 2px 10px rgba(0, 200, 255, 0.5))'
+              }}>
+                INNOVATION × APPLICATION
+              </h1>
               
               {/* Glitch overlay effect */}
               <div className="

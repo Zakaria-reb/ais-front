@@ -891,7 +891,7 @@ const AboutSection = () => {
       </div>
 
       {/* Enhanced Scroll Indicator */}
-      <div className="relative z-10 flex justify-center pb-16">
+      <div className="relative z-10 flex justify-center items-center pb-16">
         <ScrollIndicator 
           onClick={handleScroll}
           text="Initialize Next Module"

@@ -622,7 +622,6 @@ const AboutSection = () => {
               {[
                 { role: "President", img: "president.jpg", name: "[CLASSIFIED]", color: "from-red-500 to-pink-500" },
                 { role: "Vice President", img: "vice-president.jpg", name: "[CLASSIFIED]", color: "from-blue-500 to-cyan-500" },
-                { role: "Treasurer", img: "treasurer.jpg", name: "[CLASSIFIED]", color: "from-yellow-500 to-orange-500" },
                 { role: "General Secretary", img: "general-secretary.jpg", name: "[CLASSIFIED]", color: "from-green-500 to-teal-500" },
                 { role: "Head of Media", img: "head-media.jpg", name: "[CLASSIFIED]", color: "from-purple-500 to-pink-500" },
                 { role: "Head of Projects", img: "head-projects.jpg", name: "[CLASSIFIED]", color: "from-indigo-500 to-blue-500" },

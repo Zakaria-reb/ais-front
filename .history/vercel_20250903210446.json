@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/", "destination": "C:\Users\rebba\Desktop\ais_projects\front-ais-\public\index.html" }]
+}

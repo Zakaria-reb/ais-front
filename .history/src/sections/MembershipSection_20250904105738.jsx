@@ -30,7 +30,7 @@ const MembershipSection = () => {
     {
       title: "Networking Events",
       description: "Connect with tech leaders and innovators",
-      image: "/img/im4.jpg",
+      image: "/img/networking.png",
       color: "from-orange-500 to-red-500"
     }
   ];

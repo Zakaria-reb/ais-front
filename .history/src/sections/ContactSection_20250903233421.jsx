@@ -113,7 +113,26 @@ const ContactSection = () => {
             ))}
           </div>
 
-
+          {/* Call to Action */}
+          <div className="text-center">
+            <div className="inline-block bg-black/30 border border-blue-400/20 rounded-xl p-6 backdrop-blur-sm">
+              <h3 className="font-orbitron text-xl font-bold text-white mb-4">
+                Ready to Start Your Journey?
+              </h3>
+              <p className="font-rajdhani text-gray-300 mb-6 leading-relaxed">
+                Join us in shaping the future through innovation and technology. 
+                Your ideas can become the next breakthrough.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-6 py-3 rounded-lg font-rajdhani font-semibold hover:shadow-lg hover:shadow-blue-400/30 transition-all duration-300 cursor-pointer hover:-translate-y-1">
+                  Join Now
+                </div>
+                <div className="border border-blue-400 text-blue-400 px-6 py-3 rounded-lg font-rajdhani font-semibold hover:bg-blue-400/10 transition-all duration-300 cursor-pointer hover:-translate-y-1">
+                  Learn More
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Status Indicator */}
           <div className="text-center mt-8">

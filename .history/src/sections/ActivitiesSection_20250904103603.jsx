@@ -21,7 +21,7 @@ const ActivitiesSection = () => {
     {
       title: "Tech Workshops",
       description: "Hands-on learning sessions covering cutting-edge technologies",
-      image: "/img/im2.jpg", // Remplacez par le chemin de votre image
+      image: "/img/im1.jpg", // Remplacez par le chemin de votre image
       alt: "Workshop icon",
       color: "from-blue-500 to-cyan-500"
     },

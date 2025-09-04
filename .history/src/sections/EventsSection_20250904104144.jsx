@@ -17,7 +17,7 @@ const EventsSection = () => {
       date: "March 2025",
       type: "FESTIVAL",
       color: "from-purple-600 to-pink-600",
-      image: "/img/ev1.png", // Ajoutez votre image dans public/images/
+      image: "/images/ev1.png", // Ajoutez votre image dans public/images/
       alt: "TechFest 2025 event poster"
     },
     {
@@ -26,7 +26,7 @@ const EventsSection = () => {
       date: "June 2025", 
       type: "CONFERENCE",
       color: "from-blue-600 to-cyan-600",
-      image: "/img/ev2.png", // Ajoutez votre image dans public/images/
+      image: "/images/ev2.png", // Ajoutez votre image dans public/images/
       alt: "Innovation Summit event poster"
     },
     {
@@ -35,7 +35,7 @@ const EventsSection = () => {
       date: "October 2025",
       type: "SHOWCASE",
       color: "from-green-600 to-teal-600",
-      image: "/img/ev3.png", // Ajoutez votre image dans public/images/
+      image: "/images/demo-day-poster.jpg", // Ajoutez votre image dans public/images/
       alt: "Demo Day event poster"
     }
   ];

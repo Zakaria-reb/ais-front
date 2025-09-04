@@ -30,7 +30,7 @@ const MembershipSection = () => {
     {
       title: "Networking Events",
       description: "Connect with tech leaders and innovators",
-      image: "/img/im4.jpg",
+      image: "/img/im4.png",
       color: "from-orange-500 to-red-500"
     }
   ];
@@ -124,36 +124,39 @@ const MembershipSection = () => {
             {membershipBenefits.map((benefit, index) => (
               <div
                 key={index}
-                className="group relative overflow-hidden bg-black/40 border border-cyber-blue/20 rounded-xl backdrop-blur-sm hover:border-purple-400/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-400/20 h-80"
+                className="group relative bg-black/40 border border-cyber-blue/20 rounded-xl p-8 backdrop-blur-sm hover:border-purple-400/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-400/20"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Background Image */}
-                <div className="absolute inset-0 overflow-hidden">
-                  <img 
-                    src={benefit.image} 
-                    alt={benefit.title}
-                    className="w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-110 transform"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${benefit.color} opacity-20 group-hover:opacity-30 transition-opacity duration-500`}></div>
-                </div>
-
-                {/* Content Overlay */}
-                <div className="relative z-10 h-full flex flex-col justify-end p-6">
-                  <div className="text-center">
-                    <h3 className="font-orbitron text-lg font-bold text-white mb-3 group-hover:text-purple-400 transition-colors duration-300 drop-shadow-lg">
-                      {benefit.title}
-                    </h3>
-                    <p className="font-rajdhani text-gray-200 text-sm leading-relaxed group-hover:text-white transition-colors duration-300 drop-shadow-md">
-                      {benefit.description}
-                    </p>
+                {/* Image Container */}
+                <div className="text-center mb-6">
+                  <div className={`relative inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-gradient-to-r ${benefit.color} p-0.5 group-hover:scale-110 transition-all duration-300`}>
+                    <div className="w-full h-full rounded-2xl bg-black/60 backdrop-blur-sm flex items-center justify-center overflow-hidden">
+                      <img 
+                        src={benefit.image} 
+                        alt={benefit.title}
+                        className="w-16 h-16 object-contain filter brightness-110 group-hover:brightness-125 transition-all duration-300"
+                      />
+                    </div>
+                    {/* Glow effect */}
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${benefit.color} opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500`}></div>
                   </div>
                 </div>
 
+                {/* Content */}
+                <div className="text-center">
+                  <h3 className="font-orbitron text-sm font-bold text-white mb-3 group-hover:text-purple-400 transition-colors duration-300">
+                    {benefit.title}
+                  </h3>
+                  <p className="font-rajdhani text-gray-300 text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                    {benefit.description}
+                  </p>
+                </div>
+
                 {/* Hover Effects */}
-                <div className="absolute top-2 left-2 w-6 h-0.5 bg-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
-                <div className="absolute top-2 left-2 w-0.5 h-6 bg-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
-                <div className="absolute bottom-2 right-2 w-6 h-0.5 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
-                <div className="absolute bottom-2 right-2 w-0.5 h-6 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20"></div>
+                <div className="absolute top-3 left-3 w-8 h-0.5 bg-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute top-3 left-3 w-0.5 h-8 bg-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute bottom-3 right-3 w-8 h-0.5 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute bottom-3 right-3 w-0.5 h-8 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
             ))}
           </div>

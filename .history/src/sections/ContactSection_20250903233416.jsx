@@ -50,16 +50,16 @@ const ContactSection = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-block mb-4">
-            <span className="font-fira text-sm text-blue-400 bg-blue-400/10 px-4 py-2 rounded-full border border-blue-400/30">
+            <span className="font-fira text-sm text--400 bg--400/10 px-4 py-2 rounded-full border border--400/30">
               [COMMUNICATION_CHANNEL]
             </span>
           </div>
           <h2 className="font-orbitron text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from--400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
               CONTACT US
             </span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-auto"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-transparent via--400 to-transparent mx-auto"></div>
         </div>
 
         {/* Main Content */}
@@ -81,22 +81,22 @@ const ContactSection = () => {
             {contactMethods.map((method, index) => (
               <div
                 key={index}
-                className="group bg-black/40 border border-cyber-blue/20 rounded-xl p-6 backdrop-blur-sm hover:border-blue-400/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-400/20"
+                className="group bg-black/40 border border-cyber-blue/20 rounded-xl p-6 backdrop-blur-sm hover:border--400/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow--400/20"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Icon */}
                 <div className="text-center mb-4">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/30 group-hover:border-blue-400/50 transition-all duration-300 group-hover:scale-110">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from--500/20 to-cyan-500/20 border border--400/30 group-hover:border--400/50 transition-all duration-300 group-hover:scale-110">
                     <span className="text-2xl">{method.icon}</span>
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="text-center">
-                  <h3 className="font-orbitron text-sm font-bold text-blue-400 mb-2 tracking-wider group-hover:text-cyan-400 transition-colors duration-300">
+                  <h3 className="font-orbitron text-sm font-bold text--400 mb-2 tracking-wider group-hover:text-cyan-400 transition-colors duration-300">
                     {method.label}
                   </h3>
-                  <p className="font-rajdhani text-white text-sm mb-2 group-hover:text-blue-100 transition-colors duration-300">
+                  <p className="font-rajdhani text-white text-sm mb-2 group-hover:text--100 transition-colors duration-300">
                     {method.value}
                   </p>
                   <p className="font-rajdhani text-gray-400 text-xs group-hover:text-gray-300 transition-colors duration-300">
@@ -105,21 +105,40 @@ const ContactSection = () => {
                 </div>
 
                 {/* Hover Effects */}
-                <div className="absolute top-2 left-2 w-6 h-0.5 bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute top-2 left-2 w-0.5 h-6 bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute top-2 left-2 w-6 h-0.5 bg--400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute top-2 left-2 w-0.5 h-6 bg--400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute bottom-2 right-2 w-6 h-0.5 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute bottom-2 right-2 w-0.5 h-6 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
             ))}
           </div>
 
-
+          {/* Call to Action */}
+          <div className="text-center">
+            <div className="inline-block bg-black/30 border border--400/20 rounded-xl p-6 backdrop-blur-sm">
+              <h3 className="font-orbitron text-xl font-bold text-white mb-4">
+                Ready to Start Your Journey?
+              </h3>
+              <p className="font-rajdhani text-gray-300 mb-6 leading-relaxed">
+                Join us in shaping the future through innovation and technology. 
+                Your ideas can become the next breakthrough.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <div className="bg-gradient-to-r from--500 to-cyan-500 text-white px-6 py-3 rounded-lg font-rajdhani font-semibold hover:shadow-lg hover:shadow--400/30 transition-all duration-300 cursor-pointer hover:-translate-y-1">
+                  Join Now
+                </div>
+                <div className="border border--400 text--400 px-6 py-3 rounded-lg font-rajdhani font-semibold hover:bg--400/10 transition-all duration-300 cursor-pointer hover:-translate-y-1">
+                  Learn More
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Status Indicator */}
           <div className="text-center mt-8">
-            <div className="inline-flex items-center space-x-3 bg-black/30 border border-blue-400/20 rounded-lg px-6 py-3">
-              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-              <span className="font-fira text-sm text-blue-400">
+            <div className="inline-flex items-center space-x-3 bg-black/30 border border--400/20 rounded-lg px-6 py-3">
+              <div className="w-2 h-2 bg--400 rounded-full animate-pulse"></div>
+              <span className="font-fira text-sm text--400">
                 COMMUNICATION_STATUS: <span className="text-white">ONLINE</span>
               </span>
             </div>

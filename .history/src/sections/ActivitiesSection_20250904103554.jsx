@@ -21,21 +21,21 @@ const ActivitiesSection = () => {
     {
       title: "Tech Workshops",
       description: "Hands-on learning sessions covering cutting-edge technologies",
-      image: "/img/im2.jpg", // Remplacez par le chemin de votre image
+      image: "/img/im1.jpg", // Remplacez par le chemin de votre image
       alt: "Workshop icon",
       color: "from-blue-500 to-cyan-500"
     },
     {
       title: "Innovation Labs",
       description: "Collaborative spaces for breakthrough project development",
-      image: "/img/im3.jpg", // Remplacez par le chemin de votre image
+      image: "/img/im1.jpg", // Remplacez par le chemin de votre image
       alt: "Innovation lab icon",
       color: "from-green-500 to-teal-500"
     },
     {
       title: "Industry Networking",
       description: "Connect with professionals and expand your professional network",
-      image: "/img/im4.jpg", // Remplacez par le chemin de votre image
+      image: "/images/networking-icon.png", // Remplacez par le chemin de votre image
       alt: "Networking icon",
       color: "from-orange-500 to-red-500"
     }

@@ -17,7 +17,7 @@ const EventsSection = () => {
       date: "March 2025",
       type: "FESTIVAL",
       color: "from-purple-600 to-pink-600",
-      image: "/img/ev1.png", // Ajoutez votre image dans public/images/
+      image: "/images/ev1.png", // Ajoutez votre image dans public/images/
       alt: "TechFest 2025 event poster"
     },
     {

@@ -14,28 +14,28 @@ const ActivitiesSection = () => {
     {
       title: "Hackathons & Competitions",
       description: "24-hour coding marathons where innovative solutions are born",
-      image: "/img/im1.jpg", // Remplacez par le chemin de votre image
+      image: "C:/Users/rebba/Desktop/ais_projects/front-ais-/img/AIS", // Remplacez par le chemin de votre image
       alt: "Hackathon icon",
       color: "from-purple-500 to-pink-500"
     },
     {
       title: "Tech Workshops",
       description: "Hands-on learning sessions covering cutting-edge technologies",
-      image: "/img/im2.jpg", // Remplacez par le chemin de votre image
+      image: "/images/workshop-icon.png", // Remplacez par le chemin de votre image
       alt: "Workshop icon",
       color: "from-blue-500 to-cyan-500"
     },
     {
       title: "Innovation Labs",
       description: "Collaborative spaces for breakthrough project development",
-      image: "/img/im3.jpg", // Remplacez par le chemin de votre image
+      image: "/images/innovation-icon.png", // Remplacez par le chemin de votre image
       alt: "Innovation lab icon",
       color: "from-green-500 to-teal-500"
     },
     {
       title: "Industry Networking",
       description: "Connect with professionals and expand your professional network",
-      image: "/img/im4.jpg", // Remplacez par le chemin de votre image
+      image: "/images/networking-icon.png", // Remplacez par le chemin de votre image
       alt: "Networking icon",
       color: "from-orange-500 to-red-500"
     }
@@ -76,12 +76,14 @@ const ActivitiesSection = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Activity Image */}
-                <div className="flex items-center justify-center w-full h-48 mb-6 rounded-lg overflow-hidden">
-                  <img 
-                    src={activity.image} 
-                    alt={activity.alt}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                <div className="flex items-center justify-center w-16 h-16 mb-6 mx-auto">
+                  <div className={`w-full h-full rounded-full bg-gradient-to-r ${activity.color} flex items-center justify-center p-3 group-hover:scale-110 transition-transform duration-300`}>
+                    <img 
+                      src={activity.image} 
+                      alt={activity.alt}
+                      className="w-8 h-8 object-contain filter brightness-0 invert"
+                    />
+                  </div>
                 </div>
 
                 {/* Content */}

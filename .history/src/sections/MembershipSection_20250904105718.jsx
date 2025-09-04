@@ -12,25 +12,25 @@ const MembershipSection = () => {
     {
       title: "Exclusive Workshops",
       description: "Access to advanced technical training sessions",
-      image: "/img/im1.jpg",
+      image: "/img/workshops.png",
       color: "from-blue-500 to-cyan-500"
     },
     {
       title: "Mentorship Programs",
       description: "One-on-one guidance from industry professionals",
-      image: "/img/im2.jpg",
+      image: "/img/mentorship.png",
       color: "from-purple-500 to-pink-500"
     },
     {
       title: "Project Collaboration",
       description: "Work on real-world impactful projects",
-      image: "/img/im3.jpg",
+      image: "/img/collaboration.png",
       color: "from-green-500 to-teal-500"
     },
     {
       title: "Networking Events",
       description: "Connect with tech leaders and innovators",
-      image: "/img/im4.jpg",
+      image: "/img/networking.png",
       color: "from-orange-500 to-red-500"
     }
   ];

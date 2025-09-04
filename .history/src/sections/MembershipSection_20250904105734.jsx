@@ -24,13 +24,13 @@ const MembershipSection = () => {
     {
       title: "Project Collaboration",
       description: "Work on real-world impactful projects",
-      image: "/img/im3.jpg",
+      image: "/img/collaboration.png",
       color: "from-green-500 to-teal-500"
     },
     {
       title: "Networking Events",
       description: "Connect with tech leaders and innovators",
-      image: "/img/im4.jpg",
+      image: "/img/networking.png",
       color: "from-orange-500 to-red-500"
     }
   ];

@@ -624,9 +624,10 @@ const AboutSection = () => {
                 { role: "Vice President", img: "/salah.png", name: "[Salah]", color: "from-blue-500 to-cyan-500" },
                 { role: "Treasurer", img: "/zakaria.png", name: "[Zakaria Rebbah]", color: "from-yellow-500 to-orange-500" },
                 { role: "General Secretary", img: "m2.png", name: "[CLASSIFIED]", color: "from-green-500 to-teal-500" },
-                { role: "Head of Media", img: "lina.png", name: "[Lina]", color: "from-purple-500 to-pink-500" },
-                { role: "Head of Projects", img: "ali.png", name: "[Ali]", color: "from-indigo-500 to-blue-500" },
-                { role: "Vice Sponsorship Manager", img: "m1.png", name: "[CLASSIFIED]", color: "from-orange-500 to-red-500" }
+                { role: "Head of Media", img: "lina.jpg", name: "[CLASSIFIED]", color: "from-purple-500 to-pink-500" },
+                { role: "Head of Projects", img: "head-projects.jpg", name: "[CLASSIFIED]", color: "from-indigo-500 to-blue-500" },
+                { role: "Sponsorship Manager", img: "sponsorship-events-manager.jpg", name: "[CLASSIFIED]", color: "from-teal-500 to-cyan-500" },
+                { role: "Vice Sponsorship Manager", img: "vice-manager-sponsorship.jpg", name: "[CLASSIFIED]", color: "from-orange-500 to-red-500" }
               ].map((member, index) => (
                 <div 
                   key={index} 

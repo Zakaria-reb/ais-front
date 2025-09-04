@@ -12,3 +12,9 @@ root.render(
   </React.StrictMode>
 );
 
+
+      <Main />
+    </BrowserRouter>
+  </React.StrictMode>
+);
+

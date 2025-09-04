@@ -621,8 +621,8 @@ const AboutSection = () => {
             <div className="flex space-x-8 min-w-max px-8">
               {[
                 { role: "President", img: "/rim.png", name: "[CLASSIFIED]", color: "from-red-500 to-pink-500" },
-                { role: "Vice President", img: "/salah.png", name: "[CLASSIFIED]", color: "from-blue-500 to-cyan-500" },
-                { role: "Treasurer", img: "/zakaria.png", name: "[CLASSIFIED]", color: "from-yellow-500 to-orange-500" },
+                { role: "Vice President", img: "vice-president.jpg", name: "[CLASSIFIED]", color: "from-blue-500 to-cyan-500" },
+                { role: "Treasurer", img: "treasurer.jpg", name: "[CLASSIFIED]", color: "from-yellow-500 to-orange-500" },
                 { role: "General Secretary", img: "general-secretary.jpg", name: "[CLASSIFIED]", color: "from-green-500 to-teal-500" },
                 { role: "Head of Media", img: "head-media.jpg", name: "[CLASSIFIED]", color: "from-purple-500 to-pink-500" },
                 { role: "Head of Projects", img: "head-projects.jpg", name: "[CLASSIFIED]", color: "from-indigo-500 to-blue-500" },
@@ -949,24 +949,10 @@ const AboutSection = () => {
       {/* CSS for orbital animation */}
       <style jsx>{`
         @keyframes orbit {
-                0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
-                100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
-              }
-              
-              @keyframes float {
-                0%, 100% { transform: translateY(0px) scale(1); opacity: 0.7; }
-                50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
-              }
-              
-              @keyframes ring-rotate {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-              }
-              
-              @keyframes spin-reverse {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(-360deg); }
-              }
+          0% { transform: rotate(0deg) translateX(40px) rotate(0deg); }
+          100% { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+        }
+          
       `}</style>
     </div>
   );

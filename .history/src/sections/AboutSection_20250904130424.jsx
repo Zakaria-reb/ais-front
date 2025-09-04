@@ -621,8 +621,8 @@ const AboutSection = () => {
             <div className="flex space-x-8 min-w-max px-8">
               {[
                 { role: "President", img: "/rim.png", name: "[CLASSIFIED]", color: "from-red-500 to-pink-500" },
-                { role: "Vice President", img: "/salah.png", name: "[CLASSIFIED]", color: "from-blue-500 to-cyan-500" },
-                { role: "Treasurer", img: "/zakaria.png", name: "[CLASSIFIED]", color: "from-yellow-500 to-orange-500" },
+                { role: "Vice President", img: "vice-president.jpg", name: "[CLASSIFIED]", color: "from-blue-500 to-cyan-500" },
+                { role: "Treasurer", img: "treasurer.jpg", name: "[CLASSIFIED]", color: "from-yellow-500 to-orange-500" },
                 { role: "General Secretary", img: "general-secretary.jpg", name: "[CLASSIFIED]", color: "from-green-500 to-teal-500" },
                 { role: "Head of Media", img: "head-media.jpg", name: "[CLASSIFIED]", color: "from-purple-500 to-pink-500" },
                 { role: "Head of Projects", img: "head-projects.jpg", name: "[CLASSIFIED]", color: "from-indigo-500 to-blue-500" },
@@ -660,165 +660,155 @@ const AboutSection = () => {
                       transition-opacity duration-500
                     `}></div>
 
-                    {/* Enhanced Larger Image Container */}
+                    {/* Enhanced Cyberpunk Ring Container */}
                     <div className="relative mb-8 flex items-center justify-center">
-                      {/* Outer Ring - Plus grand */}
-                      <div className="
-                        absolute inset-0 w-48 h-48 mx-auto
-                        border-2 border-cyber-blue/50 rounded-full
-                        animate-ring-rotate
-                        group-hover:border-cyan-400/70
-                        transition-colors duration-300
-                      "></div>
-                      
-                      {/* Middle Ring - Plus grand */}
-                      <div className="
-                        absolute inset-4 w-40 h-40 mx-auto
-                        border border-cyber-blue/40 rounded-full
-                        animate-spin-reverse
-                        group-hover:border-cyan-300/60
-                        transition-colors duration-300
-                      "></div>
-                      
-                      {/* Inner Ring - Plus grand */}
-                      <div className="
-                        absolute inset-8 w-32 h-32 mx-auto
-                        border border-cyber-blue/30 rounded-full
-                        animate-ring-rotate
-                        group-hover:border-cyan-200/50
-                        transition-colors duration-300
-                      "></div>
-                      
-                      {/* Enhanced Large Image Container */}
-                      <div className="
-                        relative w-36 h-36 mx-auto
-                        rounded-full overflow-hidden
-                        border-3 border-cyber-blue/60
-                        group-hover:border-cyan-400/80
-                        transition-all duration-500
-                        group-hover:scale-110
-                        shadow-xl shadow-cyber-blue/40
-                        group-hover:shadow-2xl group-hover:shadow-cyan-400/60
-                        bg-gradient-to-br from-gray-800/50 to-gray-900/80
-                      ">
-                        {/* Background pour images transparentes */}
-                        <div className={`
-                          absolute inset-0
-                          bg-gradient-to-br ${member.color}
-                          opacity-10 group-hover:opacity-20
-                          transition-opacity duration-500
-                        `}></div>
-                        
-                        {/* Image principale - Plus grande et mieux positionnée */}
-                        <img 
-                          src={`img/${member.img}`} 
-                          alt={member.role} 
-                          className="
-                            w-full h-full object-cover object-center
-                            filter contrast-110 brightness-110
-                            group-hover:contrast-125 group-hover:brightness-125
-                            transition-all duration-500
-                            group-hover:scale-105
-                            relative z-10
-                          "
-                          style={{
-                            objectFit: 'cover',
-                            objectPosition: 'center center'
-                          }}
-                          draggable="false"
-                        />
-                        
-                        {/* Overlay pour améliorer le contraste */}
-                        <div className="
-                          absolute inset-0 z-20
-                          bg-gradient-to-t from-black/20 via-transparent to-transparent
-                          group-hover:from-black/10
-                          transition-all duration-500
-                        "></div>
-                        
-                        {/* Enhanced Glow Effect pour images transparentes */}
-                        <div className={`
-                          absolute inset-0 z-5
-                          bg-gradient-to-r ${member.color} 
-                          opacity-0 group-hover:opacity-30
-                          blur-md
-                          transition-opacity duration-500
-                        `}></div>
-                        
-                        {/* Enhanced Scan Effect */}
-                        <div className="
-                          absolute inset-0 z-30
-                          bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent
-                          translate-x-full group-hover:animate-glitch-slide
-                          opacity-0 group-hover:opacity-100
-                          transition-opacity duration-300
-                        "></div>
-                        
-                        {/* Border enhancement pour plus de clarté */}
-                        <div className="
-                          absolute inset-0 z-40
-                          rounded-full
-                          border-2 border-transparent
-                          group-hover:border-cyan-400/30
-                          transition-all duration-500
-                        "></div>
-                      </div>
+  {/* Outer Ring - Agrandie */}
+  <div className="
+    absolute inset-0 w-48 h-48 mx-auto
+    border-2 border-cyber-blue/50 rounded-full
+    animate-ring-rotate
+    group-hover:border-cyan-400/70
+    transition-colors duration-300
+  "></div>
+  
+  {/* Middle Ring - Agrandie */}
+  <div className="
+    absolute inset-4 w-40 h-40 mx-auto
+    border border-cyber-blue/40 rounded-full
+    animate-spin-reverse
+    group-hover:border-cyan-300/60
+    transition-colors duration-300
+  "></div>
+  
+  {/* Inner Ring - Agrandie */}
+  <div className="
+    absolute inset-8 w-32 h-32 mx-auto
+    border border-cyber-blue/30 rounded-full
+    animate-ring-rotate
+    group-hover:border-cyan-200/50
+    transition-colors duration-300
+  "></div>
+  
+  {/* Core Image Container - BEAUCOUP PLUS GRAND */}
+  <div className="
+    relative w-28 h-28 mx-auto
+    rounded-full overflow-hidden
+    border-3 border-cyber-blue/60
+    group-hover:border-cyan-400/80
+    transition-all duration-500
+    group-hover:scale-110
+    shadow-xl shadow-cyber-blue/40
+    group-hover:shadow-cyan-400/60
+  ">
+    <img 
+      src={`img/${member.img}`} 
+      alt={member.role} 
+      className="
+        w-full h-full object-cover object-center
+        filter grayscale group-hover:grayscale-0
+        transition-all duration-500
+        group-hover:contrast-110 group-hover:brightness-110
+        scale-105
+      "
+      draggable="false"
+    />
+    
+    {/* Photo Overlay */}
+    <div className={`
+      absolute inset-0
+      bg-gradient-to-t ${member.color} opacity-20
+      opacity-0 group-hover:opacity-30
+      transition-opacity duration-500
+    `}></div>
+    
+    {/* Enhanced Scan Effect */}
+    <div className="
+      absolute inset-0
+      bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent
+      translate-x-full group-hover:animate-glitch-slide
+      opacity-0 group-hover:opacity-100
+      transition-opacity duration-300
+    "></div>
 
-                      {/* Orbital particles - Repositionnés pour la taille plus grande */}
-                      {[...Array(4)].map((_, i) => (
-                        <div
-                          key={i}
-                          className={`
-                            absolute w-3 h-3 rounded-full
-                            bg-gradient-to-r ${member.color}
-                            opacity-0 group-hover:opacity-80
-                            transition-opacity duration-500
-                            shadow-lg
-                          `}
-                          style={{
-                            top: `${25 + Math.sin(i * 1.5) * 30}%`,
-                            left: `${25 + Math.cos(i * 1.5) * 30}%`,
-                            animation: `orbit ${4 + i}s linear infinite`,
-                            animationPlayState: 'paused'
-                          }}
-                          onMouseEnter={(e) => e.target.style.animationPlayState = 'running'}
-                          onMouseLeave={(e) => e.target.style.animationPlayState = 'paused'}
-                        />
-                      ))}
-                      
-                      {/* Glow effect autour de l'image */}
-                      <div className={`
-                        absolute inset-0 w-48 h-48 mx-auto
-                        bg-gradient-to-r ${member.color}
-                        opacity-0 group-hover:opacity-20
-                        blur-2xl rounded-full
-                        transition-opacity duration-700
-                        -z-10
-                      `}></div>
-                    </div>
+    {/* Nouveau: Effet de focus au hover */}
+    <div className="
+      absolute inset-0
+      ring-4 ring-cyan-400/0 group-hover:ring-cyan-400/50
+      rounded-full transition-all duration-300
+      group-hover:ring-offset-2 group-hover:ring-offset-transparent
+    "></div>
+  </div>
+
+  {/* Orbital particles - Ajustées pour la nouvelle taille */}
+  {[...Array(3)].map((_, i) => (
+    <div
+      key={i}
+      className={`
+        absolute w-3 h-3 rounded-full
+        bg-gradient-to-r ${member.color}
+        opacity-0 group-hover:opacity-60
+        transition-opacity duration-500
+        shadow-lg
+      `}
+      style={{
+        top: `${25 + Math.sin(i * 2.5) * 25}%`,
+        left: `${25 + Math.cos(i * 2.5) * 25}%`,
+        animation: `orbit ${3 + i}s linear infinite`,
+        animationPlayState: 'paused'
+      }}
+      onMouseEnter={(e) => e.target.style.animationPlayState = 'running'}
+      onMouseLeave={(e) => e.target.style.animationPlayState = 'paused'}
+    />
+  ))}
+</div>
+
+// AUSSI, modifiez la carte principale pour qu'elle soit plus haute
+<div 
+  key={index} 
+  className="
+    flex-shrink-0 w-80 h-96
+    group cursor-pointer
+    transform transition-all duration-500
+    hover:scale-105 hover:-translate-y-4
+  "
+  style={{
+    animationDelay: `${(index + 1) * 0.1}s`
+  }}
+>
+  <div className="
+    relative h-full
+    bg-gradient-to-br from-gray-900/95 to-black/95
+    border border-cyber-blue/40
+    rounded-xl p-8
+    backdrop-blur-lg
+    shadow-lg shadow-cyber-blue/25
+    group-hover:shadow-2xl group-hover:shadow-cyan-400/40
+    group-hover:border-cyan-400/60
+    transition-all duration-500
+    overflow-hidden
+    flex flex-col justify-between
+  ">
                     
                     {/* Enhanced Member Info */}
-                    <div className="text-center space-y-4 relative z-10">
+                    <div className="text-center space-y-3 relative z-10">
                       <div className="
-                        font-orbitron font-bold text-lg md:text-xl
+                        font-orbitron font-bold text-sm md:text-base
                         text-cyber-blue
                         group-hover:text-cyan-400
                         transition-colors duration-300
                         tracking-wide
-                        drop-shadow-lg
                       ">
                         {member.role}
                       </div>
                       <div className="
-                        font-fira font-medium text-sm md:text-base
+                        font-fira font-medium text-xs md:text-sm
                         text-gray-400
                         group-hover:text-gray-300
                         transition-colors duration-300
                         tracking-wider
-                        bg-black/40 px-4 py-2 rounded-full
+                        bg-black/30 px-3 py-1 rounded-full
                         border border-gray-600/30
-                        group-hover:border-cyan-400/40
-                        group-hover:bg-black/60
+                        group-hover:border-cyan-400/30
                       ">
                         {member.name}
                       </div>
@@ -826,25 +816,25 @@ const AboutSection = () => {
                     
                     {/* Enhanced Hover Accent Lines */}
                     <div className="
-                      absolute top-4 left-4 w-12 h-0.5
+                      absolute top-4 left-4 w-10 h-0.5
                       bg-gradient-to-r from-cyber-blue to-transparent
                       opacity-0 group-hover:opacity-100
                       transition-opacity duration-500
                     "></div>
                     <div className="
-                      absolute top-4 left-4 w-0.5 h-12
+                      absolute top-4 left-4 w-0.5 h-10
                       bg-gradient-to-b from-cyber-blue to-transparent
                       opacity-0 group-hover:opacity-100
                       transition-opacity duration-500
                     "></div>
                     <div className="
-                      absolute bottom-4 right-4 w-12 h-0.5
+                      absolute bottom-4 right-4 w-10 h-0.5
                       bg-gradient-to-l from-cyan-400 to-transparent
                       opacity-0 group-hover:opacity-100
                       transition-opacity duration-500
                     "></div>
                     <div className="
-                      absolute bottom-4 right-4 w-0.5 h-12
+                      absolute bottom-4 right-4 w-0.5 h-10
                       bg-gradient-to-t from-cyan-400 to-transparent
                       opacity-0 group-hover:opacity-100
                       transition-opacity duration-500
@@ -852,14 +842,13 @@ const AboutSection = () => {
 
                     {/* Role badge */}
                     <div className="
-                      absolute top-3 right-3
-                      font-fira text-sm
-                      bg-black/70 text-cyan-400
-                      px-3 py-1 rounded-lg
+                      absolute top-2 right-2
+                      font-fira text-xs
+                      bg-black/60 text-cyan-400
+                      px-2 py-1 rounded-md
                       opacity-0 group-hover:opacity-100
                       transition-opacity duration-300
                       border border-cyan-400/30
-                      backdrop-blur-sm
                     ">
                       #{String(index + 1).padStart(2, '0')}
                     </div>
@@ -949,24 +938,9 @@ const AboutSection = () => {
       {/* CSS for orbital animation */}
       <style jsx>{`
         @keyframes orbit {
-                0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
-                100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
-              }
-              
-              @keyframes float {
-                0%, 100% { transform: translateY(0px) scale(1); opacity: 0.7; }
-                50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
-              }
-              
-              @keyframes ring-rotate {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-              }
-              
-              @keyframes spin-reverse {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(-360deg); }
-              }
+          0% { transform: rotate(0deg) translateX(40px) rotate(0deg); }
+          100% { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+        }
       `}</style>
     </div>
   );

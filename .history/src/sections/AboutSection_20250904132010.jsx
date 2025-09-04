@@ -621,8 +621,8 @@ const AboutSection = () => {
             <div className="flex space-x-8 min-w-max px-8">
               {[
                 { role: "President", img: "/rim.png", name: "[CLASSIFIED]", color: "from-red-500 to-pink-500" },
-                { role: "Vice President", img: "/salah.png", name: "[CLASSIFIED]", color: "from-blue-500 to-cyan-500" },
-                { role: "Treasurer", img: "/zakaria.png", name: "[CLASSIFIED]", color: "from-yellow-500 to-orange-500" },
+                { role: "Vice President", img: "vice-president.jpg", name: "[CLASSIFIED]", color: "from-blue-500 to-cyan-500" },
+                { role: "Treasurer", img: "treasurer.jpg", name: "[CLASSIFIED]", color: "from-yellow-500 to-orange-500" },
                 { role: "General Secretary", img: "general-secretary.jpg", name: "[CLASSIFIED]", color: "from-green-500 to-teal-500" },
                 { role: "Head of Media", img: "head-media.jpg", name: "[CLASSIFIED]", color: "from-purple-500 to-pink-500" },
                 { role: "Head of Projects", img: "head-projects.jpg", name: "[CLASSIFIED]", color: "from-indigo-500 to-blue-500" },
@@ -632,10 +632,10 @@ const AboutSection = () => {
                 <div 
                   key={index} 
                   className="
-                    flex-shrink-0 w-80
+                    flex-shrink-0 w-96
                     group cursor-pointer
-                    transform transition-all duration-500
-                    hover:scale-105 hover:-translate-y-4
+                    transform transition-all duration-700
+                    hover:scale-105 hover:-translate-y-6
                   "
                   style={{
                     animationDelay: `${(index + 1) * 0.1}s`
@@ -645,126 +645,114 @@ const AboutSection = () => {
                     relative
                     bg-gradient-to-br from-gray-900/95 to-black/95
                     border border-cyber-blue/40
-                    rounded-xl p-8
+                    rounded-2xl p-6
                     backdrop-blur-lg
                     shadow-lg shadow-cyber-blue/25
-                    group-hover:shadow-2xl group-hover:shadow-cyan-400/40
-                    group-hover:border-cyan-400/60
-                    transition-all duration-500
+                    group-hover:shadow-3xl group-hover:shadow-cyan-400/50
+                    group-hover:border-cyan-400/80
+                    transition-all duration-700
                     overflow-hidden
+                    min-h-[480px]
                   ">
                     {/* Animated background gradient */}
                     <div className={`
-                      absolute inset-0 opacity-0 group-hover:opacity-10
+                      absolute inset-0 opacity-0 group-hover:opacity-15
                       bg-gradient-to-br ${member.color}
-                      transition-opacity duration-500
+                      transition-opacity duration-700
                     `}></div>
 
-                    {/* Enhanced Larger Image Container */}
+                    {/* Enhanced Large Photo Container */}
                     <div className="relative mb-8 flex items-center justify-center">
-                      {/* Outer Ring - Plus grand */}
+                      {/* Outer Cyberpunk Frame */}
                       <div className="
-                        absolute inset-0 w-48 h-48 mx-auto
-                        border-2 border-cyber-blue/50 rounded-full
+                        absolute inset-0 w-64 h-64 mx-auto
+                        border-2 border-cyber-blue/60 rounded-3xl
                         animate-ring-rotate
-                        group-hover:border-cyan-400/70
-                        transition-colors duration-300
-                      "></div>
-                      
-                      {/* Middle Ring - Plus grand */}
-                      <div className="
-                        absolute inset-4 w-40 h-40 mx-auto
-                        border border-cyber-blue/40 rounded-full
-                        animate-spin-reverse
-                        group-hover:border-cyan-300/60
-                        transition-colors duration-300
-                      "></div>
-                      
-                      {/* Inner Ring - Plus grand */}
-                      <div className="
-                        absolute inset-8 w-32 h-32 mx-auto
-                        border border-cyber-blue/30 rounded-full
-                        animate-ring-rotate
-                        group-hover:border-cyan-200/50
-                        transition-colors duration-300
-                      "></div>
-                      
-                      {/* Enhanced Large Image Container */}
-                      <div className="
-                        relative w-36 h-36 mx-auto
-                        rounded-full overflow-hidden
-                        border-3 border-cyber-blue/60
-                        group-hover:border-cyan-400/80
+                        group-hover:border-cyan-400/90
                         transition-all duration-500
-                        group-hover:scale-110
-                        shadow-xl shadow-cyber-blue/40
-                        group-hover:shadow-2xl group-hover:shadow-cyan-400/60
-                        bg-gradient-to-br from-gray-800/50 to-gray-900/80
+                        shadow-lg shadow-cyber-blue/30
+                        group-hover:shadow-cyan-400/60
                       ">
-                        {/* Background pour images transparentes */}
-                        <div className={`
-                          absolute inset-0
-                          bg-gradient-to-br ${member.color}
-                          opacity-10 group-hover:opacity-20
-                          transition-opacity duration-500
-                        `}></div>
-                        
-                        {/* Image principale - Plus grande et mieux positionnée */}
+                        {/* Corner accents */}
+                        <div className="absolute -top-1 -left-1 w-8 h-8 border-l-4 border-t-4 border-cyan-400 rounded-tl-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div className="absolute -top-1 -right-1 w-8 h-8 border-r-4 border-t-4 border-pink-400 rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div className="absolute -bottom-1 -left-1 w-8 h-8 border-l-4 border-b-4 border-purple-400 rounded-bl-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div className="absolute -bottom-1 -right-1 w-8 h-8 border-r-4 border-b-4 border-yellow-400 rounded-br-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                      </div>
+                      
+                      {/* Inner Ring */}
+                      <div className="
+                        absolute inset-4 w-56 h-56 mx-auto
+                        border border-cyber-blue/40 rounded-2xl
+                        animate-spin-reverse
+                        group-hover:border-cyan-300/70
+                        transition-colors duration-500
+                      "></div>
+                      
+                      {/* Main Image Container - LARGE */}
+                      <div className="
+                        relative w-52 h-52 mx-auto
+                        rounded-2xl overflow-hidden
+                        border-3 border-cyber-blue/80
+                        group-hover:border-cyan-400/100
+                        transition-all duration-700
+                        group-hover:scale-110
+                        shadow-2xl shadow-cyber-blue/40
+                        group-hover:shadow-cyan-400/70
+                        bg-black/50
+                      ">
                         <img 
                           src={`img/${member.img}`} 
                           alt={member.role} 
                           className="
                             w-full h-full object-cover object-center
-                            filter contrast-110 brightness-110
-                            group-hover:contrast-125 group-hover:brightness-125
-                            transition-all duration-500
-                            group-hover:scale-105
-                            relative z-10
+                            filter grayscale contrast-125 brightness-110
+                            group-hover:grayscale-0 group-hover:contrast-150 group-hover:brightness-125
+                            transition-all duration-700
+                            scale-110 group-hover:scale-125
                           "
-                          style={{
-                            objectFit: 'cover',
-                            objectPosition: 'center center'
-                          }}
                           draggable="false"
                         />
                         
-                        {/* Overlay pour améliorer le contraste */}
-                        <div className="
-                          absolute inset-0 z-20
-                          bg-gradient-to-t from-black/20 via-transparent to-transparent
-                          group-hover:from-black/10
-                          transition-all duration-500
-                        "></div>
-                        
-                        {/* Enhanced Glow Effect pour images transparentes */}
+                        {/* Enhanced Photo Overlay with member color */}
                         <div className={`
-                          absolute inset-0 z-5
-                          bg-gradient-to-r ${member.color} 
-                          opacity-0 group-hover:opacity-30
-                          blur-md
-                          transition-opacity duration-500
+                          absolute inset-0
+                          bg-gradient-to-br ${member.color} opacity-10
+                          group-hover:opacity-25
+                          transition-opacity duration-700
+                          mix-blend-overlay
                         `}></div>
                         
-                        {/* Enhanced Scan Effect */}
+                        {/* Cyberpunk Scan Lines */}
                         <div className="
-                          absolute inset-0 z-30
-                          bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent
-                          translate-x-full group-hover:animate-glitch-slide
+                          absolute inset-0
+                          bg-[linear-gradient(transparent_48%,rgba(0,170,255,0.08)_50%,transparent_52%)]
+                          bg-[size:100%_4px]
+                          animate-scan-rotate
+                          opacity-0 group-hover:opacity-100
+                          transition-opacity duration-500
+                        "></div>
+                        
+                        {/* Enhanced Glitch Effect */}
+                        <div className="
+                          absolute inset-0
+                          bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent
+                          -translate-x-full group-hover:animate-glitch-slide
                           opacity-0 group-hover:opacity-100
                           transition-opacity duration-300
                         "></div>
-                        
-                        {/* Border enhancement pour plus de clarté */}
+
+                        {/* Holographic overlay */}
                         <div className="
-                          absolute inset-0 z-40
-                          rounded-full
-                          border-2 border-transparent
-                          group-hover:border-cyan-400/30
-                          transition-all duration-500
+                          absolute inset-0
+                          bg-gradient-to-tr from-transparent via-white/5 to-cyan-400/20
+                          opacity-0 group-hover:opacity-100
+                          transition-opacity duration-500
+                          mix-blend-screen
                         "></div>
                       </div>
 
-                      {/* Orbital particles - Repositionnés pour la taille plus grande */}
+                      {/* Enhanced Orbital Elements */}
                       {[...Array(4)].map((_, i) => (
                         <div
                           key={i}
@@ -772,29 +760,20 @@ const AboutSection = () => {
                             absolute w-3 h-3 rounded-full
                             bg-gradient-to-r ${member.color}
                             opacity-0 group-hover:opacity-80
-                            transition-opacity duration-500
+                            transition-all duration-700
                             shadow-lg
                           `}
                           style={{
-                            top: `${25 + Math.sin(i * 1.5) * 30}%`,
-                            left: `${25 + Math.cos(i * 1.5) * 30}%`,
+                            top: `${25 + Math.sin(i * 1.57) * 35}%`,
+                            left: `${25 + Math.cos(i * 1.57) * 35}%`,
                             animation: `orbit ${4 + i}s linear infinite`,
-                            animationPlayState: 'paused'
+                            animationPlayState: 'paused',
+                            filter: 'drop-shadow(0 0 6px currentColor)'
                           }}
                           onMouseEnter={(e) => e.target.style.animationPlayState = 'running'}
                           onMouseLeave={(e) => e.target.style.animationPlayState = 'paused'}
                         />
                       ))}
-                      
-                      {/* Glow effect autour de l'image */}
-                      <div className={`
-                        absolute inset-0 w-48 h-48 mx-auto
-                        bg-gradient-to-r ${member.color}
-                        opacity-0 group-hover:opacity-20
-                        blur-2xl rounded-full
-                        transition-opacity duration-700
-                        -z-10
-                      `}></div>
                     </div>
                     
                     {/* Enhanced Member Info */}
@@ -803,71 +782,89 @@ const AboutSection = () => {
                         font-orbitron font-bold text-lg md:text-xl
                         text-cyber-blue
                         group-hover:text-cyan-400
-                        transition-colors duration-300
+                        transition-colors duration-500
                         tracking-wide
-                        drop-shadow-lg
+                        text-shadow-lg
+                        filter drop-shadow-lg
                       ">
                         {member.role}
                       </div>
                       <div className="
                         font-fira font-medium text-sm md:text-base
                         text-gray-400
-                        group-hover:text-gray-300
-                        transition-colors duration-300
+                        group-hover:text-gray-200
+                        transition-colors duration-500
                         tracking-wider
                         bg-black/40 px-4 py-2 rounded-full
                         border border-gray-600/30
-                        group-hover:border-cyan-400/40
-                        group-hover:bg-black/60
+                        group-hover:border-cyan-400/50
+                        backdrop-blur-sm
+                        shadow-lg
                       ">
                         {member.name}
                       </div>
                     </div>
                     
-                    {/* Enhanced Hover Accent Lines */}
+                    {/* Enhanced Corner Accent Lines */}
                     <div className="
-                      absolute top-4 left-4 w-12 h-0.5
-                      bg-gradient-to-r from-cyber-blue to-transparent
+                      absolute top-4 left-4 w-16 h-1
+                      bg-gradient-to-r from-cyber-blue via-cyan-400 to-transparent
                       opacity-0 group-hover:opacity-100
-                      transition-opacity duration-500
+                      transition-all duration-700
+                      rounded-full
                     "></div>
                     <div className="
-                      absolute top-4 left-4 w-0.5 h-12
-                      bg-gradient-to-b from-cyber-blue to-transparent
+                      absolute top-4 left-4 w-1 h-16
+                      bg-gradient-to-b from-cyber-blue via-cyan-400 to-transparent
                       opacity-0 group-hover:opacity-100
-                      transition-opacity duration-500
+                      transition-all duration-700
+                      rounded-full
                     "></div>
                     <div className="
-                      absolute bottom-4 right-4 w-12 h-0.5
-                      bg-gradient-to-l from-cyan-400 to-transparent
+                      absolute bottom-4 right-4 w-16 h-1
+                      bg-gradient-to-l from-cyan-400 via-purple-400 to-transparent
                       opacity-0 group-hover:opacity-100
-                      transition-opacity duration-500
+                      transition-all duration-700
+                      rounded-full
                     "></div>
                     <div className="
-                      absolute bottom-4 right-4 w-0.5 h-12
-                      bg-gradient-to-t from-cyan-400 to-transparent
+                      absolute bottom-4 right-4 w-1 h-16
+                      bg-gradient-to-t from-cyan-400 via-purple-400 to-transparent
                       opacity-0 group-hover:opacity-100
-                      transition-opacity duration-500
+                      transition-all duration-700
+                      rounded-full
                     "></div>
 
-                    {/* Role badge */}
+                    {/* Enhanced Role Badge */}
                     <div className="
                       absolute top-3 right-3
-                      font-fira text-sm
-                      bg-black/70 text-cyan-400
-                      px-3 py-1 rounded-lg
+                      font-fira text-sm font-bold
+                      bg-gradient-to-r from-black/80 to-gray-900/80
+                      text-cyan-400
+                      px-3 py-2 rounded-lg
                       opacity-0 group-hover:opacity-100
-                      transition-opacity duration-300
-                      border border-cyan-400/30
+                      transition-all duration-500
+                      border border-cyan-400/40
+                      shadow-lg shadow-cyan-400/30
                       backdrop-blur-sm
                     ">
                       #{String(index + 1).padStart(2, '0')}
                     </div>
+
+                    {/* Status Indicator */}
+                    <div className="
+                      absolute top-3 left-3
+                      w-4 h-4 rounded-full
+                      bg-gradient-to-r from-green-400 to-cyan-400
+                      opacity-0 group-hover:opacity-100
+                      transition-all duration-500
+                      animate-pulse
+                      shadow-lg shadow-green-400/50
+                    "></div>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
 
           {/* Enhanced Navigation Buttons */}
           <div className="flex items-center justify-center space-x-6 mt-12">
@@ -949,27 +946,12 @@ const AboutSection = () => {
       {/* CSS for orbital animation */}
       <style jsx>{`
         @keyframes orbit {
-                0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
-                100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
-              }
-              
-              @keyframes float {
-                0%, 100% { transform: translateY(0px) scale(1); opacity: 0.7; }
-                50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
-              }
-              
-              @keyframes ring-rotate {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-              }
-              
-              @keyframes spin-reverse {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(-360deg); }
-              }
+          0% { transform: rotate(0deg) translateX(40px) rotate(0deg); }
+          100% { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+        }
       `}</style>
     </div>
-  );
+  
 };
 
 export default AboutSection;

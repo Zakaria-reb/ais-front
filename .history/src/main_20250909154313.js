@@ -1,7 +1,6 @@
 import {Routes,Route} from 'react-router-dom';
 import App from './App';
 import InscriptionPage from './pages/Inscription.jsx';
-import LoginPage from './pages/Login.jsx';
 
 function Main() {
 
@@ -9,7 +8,7 @@ function Main() {
     <Routes>
         <Route path='/' element={<App />} />
         <Route path='/inscription' element={<InscriptionPage />} />
-        <Route path='/connexion' element={<LoginPage />} />
+        
     </Routes>
   )
 }

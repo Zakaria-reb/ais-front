@@ -626,8 +626,8 @@ const AboutSection = () => {
                 { role: "General Secretary", img: "/aya.png", name: "[Aya]", color: "from-yellow-500 to-orange-500" },
                 { role: "Head of Media", img: "/lina.png", name: "[Lina]", color: "from-purple-500 to-pink-500" },
                 { role: "Head of Projects", img: "/ali.png", name: "[Ali]", color: "from-indigo-500 to-blue-500" },
-                { role: "Sponsorship Manager", img: "/m1.png", name: "[Hiba]", color: "from-green-500 to-red-500" },
-                { role: "Vice Sponsorship Manager", img: "/m2.png", name: "[Aya]", color: "from-orange-500 to-white-500" }
+                { role: "Sponsorship Manager", img: "/m1.png", name: "[Hiba]", color: "from-yellow-500 to-red-500" },
+                { role: "Vice Sponsorship Manager", img: "/m2.png", name: "[Aya]", color: "from-orange-500 to-red-500" }
               ].map((member, index) => (
                 <div 
                   key={index} 
@@ -716,7 +716,7 @@ const AboutSection = () => {
                           className="
                             w-full h-full object-cover object-center
                             filter contrast-110 brightness-110
-                            group-hover:contrast-125 group-hover:brightness-110
+                            group-hover:contrast-125 group-hover:brightness-125
                             transition-all duration-500
                             group-hover:scale-105
                             relative z-10

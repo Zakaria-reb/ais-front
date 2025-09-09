@@ -716,7 +716,7 @@ const AboutSection = () => {
                           className="
                             w-full h-full object-cover object-center
                             filter contrast-110 brightness-110
-                            group-hover:contrast-125 group-hover:brightness-110
+                            group-hover:contrast-125 group-hover:brightness-125
                             transition-all duration-500
                             group-hover:scale-105
                             relative z-10

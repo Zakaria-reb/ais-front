@@ -156,27 +156,13 @@ const MembershipSection = () => {
             </div>
           </div>
         </div>
-
-        {/* Back to Top Button */}
-        <div className="text-center">
-          <div
-            className="inline-flex items-center justify-center gap-4 cursor-pointer p-6 rounded-xl bg-cyber-blue/10 border border-cyber-blue/30 transition-all duration-500 hover:bg-cyber-blue/20 hover:-translate-y-2 hover:shadow-lg hover:shadow-cyber-blue/30 group"
-            onClick={handleScrollToTop}
-          >
-            <span className="font-orbitron text-lg font-medium tracking-[2px] text-cyber-blue uppercase group-hover:text-cyan-400 transition-colors duration-300">
-              Return to Base
-            </span>
-            <div className="flex flex-col items-center space-y-1">
-              <div className="w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-cyber-blue group-hover:border-b-cyan-400 transition-colors duration-300"
-                   style={{ filter: 'drop-shadow(0 0 8px rgba(0, 170, 255, 0.6))' }}></div>
-              <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-b-[6px] border-l-transparent border-r-transparent border-b-cyber-blue/70 group-hover:border-b-cyan-400/70 transition-colors duration-300 transform scale-75"
-                   style={{ filter: 'drop-shadow(0 0 6px rgba(0, 170, 255, 0.4))' }}></div>
-            </div>
-          </div>
-        </div>
-      </div>
+     
+      <ScrollIndicator
+        onClick={handleScroll}
+        text="Connect With Us"
+      />
     </div>
   );
 };
 
-export default MembershipSection;
+export default EventsSection;

@@ -77,7 +77,7 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
           // Layout avec logo quand scrolled
           <div className="flex items-center justify-between">
             {/* Header Logo - Responsive sizing */}
-            <a className="transition-all duration-500 ease-out opacity-100 visible scale-100 translate-x-0" href="/">
+            <div className="transition-all duration-500 ease-out opacity-100 visible scale-100 translate-x-0">
               <div className="relative flex items-center gap-2 sm:gap-3">
                 <div className="relative">
                   <img 
@@ -98,8 +98,7 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
                   AIS
                 </div>
               </div>
-            </a>
-            
+            </div>
 
             {/* Desktop Navigation Menu - Hidden on mobile */}
             <ul className="hidden lg:flex justify-center gap-4 xl:gap-6 list-none">
@@ -171,6 +170,9 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
                       <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
                     </div>
                   </div>
+
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-purple-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
             </div>
@@ -242,38 +244,39 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
 
             {/* Creative Join Button - Centered Layout */}
             {/* Creative Join Button - Desktop */}
-            <div className="hidden lg:block absolute right-0">
-              <div 
-                onClick={handleJoinRedirect}
-                className="relative group cursor-pointer"
-              >
-                {/* Animated Border Ring */}
-                <div className="absolute -inset-2 border border-cyan-400/30 rounded-lg animate-pulse opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute -inset-1 border border-purple-400/20 rounded-md animate-spin-slow opacity-30 group-hover:opacity-70 transition-opacity duration-300"></div>
-                
-                {/* Main Button */}
-                <div className="relative bg-gradient-to-r from-purple-500/20 to-cyan-500/20 backdrop-blur-sm border border-cyan-400/40 rounded-lg px-4 py-2 group-hover:border-cyan-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
-                  <div className="flex items-center space-x-2">
-                    {/* Pulsing Dot */}
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"
-                         style={{ boxShadow: '0 0 8px rgba(0, 255, 255, 0.6)' }}></div>
-                    
-                    {/* Button Text */}
-                    <span className="font-orbitron text-xs font-bold tracking-wider text-cyan-400 group-hover:text-white transition-colors duration-300"
-                          style={{ textShadow: '0 0 12px rgba(0, 255, 255, 0.8)' }}>
-                      JOIN
-                    </span>
-                    
-                    {/* Animated Arrow */}
-                    <div className="flex space-x-0.5 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
-                      <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                      <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-                    </div>
+          <div className="hidden lg:block  absolute right-0">
+            <div 
+              onClick={handleJoinRedirect}
+              className="relative group cursor-pointer"
+            >
+              {/* Animated Border Effects */}
+              <div className="absolute -inset-2 border border-cyan-400/30 rounded-lg animate-pulse opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute -inset-1 border border-purple-400/20 rounded-md animate-spin-slow opacity-30 group-hover:opacity-70 transition-opacity duration-300"></div>
+              
+              {/* Main Button */}
+              <div className="relative bg-gradient-to-r from-purple-500/20 to-cyan-500/20 backdrop-blur-sm border border-cyan-400/40 rounded-lg px-5 py-2.5 group-hover:border-cyan-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div className="flex items-center space-x-3">
+                  
+                  {/* Pulsing Dot */}
+                  <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"
+                      style={{ boxShadow: '0 0 8px rgba(0, 255, 255, 0.6)' }}></div>
+                  
+                  {/* Button Text */}
+                  <span className="font-orbitron text-xs font-bold tracking-widest text-cyan-400 group-hover:text-white transition-colors duration-300"
+                        style={{ textShadow: '0 0 12px rgba(0, 255, 255, 0.8)' }}>
+                    join
+                  </span>
+                  
+                  {/* Animated Arrow */}
+                  <div className="flex space-x-0.5 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
+                    <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
 
             {/* Mobile Menu Button - Position absolue pour centrer le menu */}

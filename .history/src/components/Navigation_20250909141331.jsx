@@ -77,7 +77,7 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
           // Layout avec logo quand scrolled
           <div className="flex items-center justify-between">
             {/* Header Logo - Responsive sizing */}
-            <a className="transition-all duration-500 ease-out opacity-100 visible scale-100 translate-x-0" href="/">
+            <div className="transition-all duration-500 ease-out opacity-100 visible scale-100 translate-x-0">
               <div className="relative flex items-center gap-2 sm:gap-3">
                 <div className="relative">
                   <img 
@@ -98,8 +98,7 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
                   AIS
                 </div>
               </div>
-            </a>
-            
+            </div>
 
             {/* Desktop Navigation Menu - Hidden on mobile */}
             <ul className="hidden lg:flex justify-center gap-4 xl:gap-6 list-none">
@@ -171,6 +170,9 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
                       <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
                     </div>
                   </div>
+
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-purple-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
             </div>
@@ -240,9 +242,8 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
               ))}
             </ul>
 
-            {/* Creative Join Button - Centered Layout */}
             {/* Creative Join Button - Desktop */}
-            <div className="hidden lg:block absolute right-0">
+            <div className="hidden lg:block">
               <div 
                 onClick={handleJoinRedirect}
                 className="relative group cursor-pointer"
@@ -264,17 +265,13 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
                       JOIN
                     </span>
                     
-                    {/* Animated Arrow */}
+                    {/* Arrow Animation */}
                     <div className="flex space-x-0.5 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
                       <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
                       <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
 
             {/* Mobile Menu Button - Position absolue pour centrer le menu */}
             <div className="lg:hidden absolute right-0">

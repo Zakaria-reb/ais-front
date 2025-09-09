@@ -48,10 +48,6 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
     setIsMobileMenuOpen(false);
   };
 
-  const handleJoinRedirect = () => {
-    window.location.href = '/inscription';
-  };
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -77,7 +73,7 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
           // Layout avec logo quand scrolled
           <div className="flex items-center justify-between">
             {/* Header Logo - Responsive sizing */}
-            <a className="transition-all duration-500 ease-out opacity-100 visible scale-100 translate-x-0" href="/">
+            <div className="transition-all duration-500 ease-out opacity-100 visible scale-100 translate-x-0">
               <div className="relative flex items-center gap-2 sm:gap-3">
                 <div className="relative">
                   <img 
@@ -98,11 +94,10 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
                   AIS
                 </div>
               </div>
-            </a>
-            
+            </div>
 
             {/* Desktop Navigation Menu - Hidden on mobile */}
-            <ul className="hidden lg:flex justify-center gap-4 xl:gap-6 list-none">
+            <ul className="hidden lg:flex justify-center gap-6 xl:gap-10 list-none">
               {menuItems.map((item, index) => (
                 <li
                   key={item.id}
@@ -140,40 +135,6 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
                 </li>
               ))}
             </ul>
-
-            {/* Creative Join Button - Desktop */}
-            <div className="hidden lg:block">
-              <div 
-                onClick={handleJoinRedirect}
-                className="relative group cursor-pointer"
-              >
-                {/* Animated Border Ring */}
-                <div className="absolute -inset-2 border border-cyan-400/30 rounded-lg animate-pulse opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute -inset-1 border border-purple-400/20 rounded-md animate-spin-slow opacity-30 group-hover:opacity-70 transition-opacity duration-300"></div>
-                
-                {/* Main Button */}
-                <div className="relative bg-gradient-to-r from-purple-500/20 to-cyan-500/20 backdrop-blur-sm border border-cyan-400/40 rounded-lg px-4 py-2 group-hover:border-cyan-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
-                  <div className="flex items-center space-x-2">
-                    {/* Pulsing Dot */}
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"
-                         style={{ boxShadow: '0 0 8px rgba(0, 255, 255, 0.6)' }}></div>
-                    
-                    {/* Button Text */}
-                    <span className="font-orbitron text-xs font-bold tracking-wider text-cyan-400 group-hover:text-white transition-colors duration-300"
-                          style={{ textShadow: '0 0 12px rgba(0, 255, 255, 0.8)' }}>
-                      JOIN
-                    </span>
-                    
-                    {/* Arrow Animation */}
-                    <div className="flex space-x-0.5 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
-                      <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                      <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             {/* Mobile Menu Button - Visible only on mobile/tablet */}
             <div className="lg:hidden">
@@ -196,12 +157,23 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
                      style={{ boxShadow: '0 0 8px rgba(0, 170, 255, 0.6)' }}></div>
               </button>
             </div>
+
+            {/* Desktop Status Indicator */}
+            <div className="hidden lg:block">
+              <div className="text-xs font-fira text-cyber-blue/70 tracking-wider bg-cyber-blue/5 px-2 py-1 rounded border border-cyber-blue/15"
+                   style={{
+                     backdropFilter: 'blur(8px)',
+                     textShadow: '0 0 8px rgba(0, 170, 255, 0.4)'
+                   }}>
+                [{activeSection.toUpperCase()}]
+              </div>
+            </div>
           </div>
         ) : (
           // Layout centré quand pas scrolled
           <div className="flex items-center justify-center relative">
             {/* Desktop Navigation Menu - Centré */}
-            <ul className="hidden lg:flex justify-center gap-4 xl:gap-6 list-none">
+            <ul className="hidden lg:flex justify-center gap-6 xl:gap-10 list-none">
               {menuItems.map((item, index) => (
                 <li
                   key={item.id}
@@ -239,42 +211,6 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
                 </li>
               ))}
             </ul>
-
-            {/* Creative Join Button - Centered Layout */}
-            {/* Creative Join Button - Desktop */}
-            <div className="hidden lg:block absolute right-0">
-              <div 
-                onClick={handleJoinRedirect}
-                className="relative group cursor-pointer"
-              >
-                {/* Animated Border Ring */}
-                <div className="absolute -inset-2 border border-cyan-400/30 rounded-lg animate-pulse opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute -inset-1 border border-purple-400/20 rounded-md animate-spin-slow opacity-30 group-hover:opacity-70 transition-opacity duration-300"></div>
-                
-                {/* Main Button */}
-                <div className="relative bg-gradient-to-r from-purple-500/20 to-cyan-500/20 backdrop-blur-sm border border-cyan-400/40 rounded-lg px-4 py-2 group-hover:border-cyan-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
-                  <div className="flex items-center space-x-2">
-                    {/* Pulsing Dot */}
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"
-                         style={{ boxShadow: '0 0 8px rgba(0, 255, 255, 0.6)' }}></div>
-                    
-                    {/* Button Text */}
-                    <span className="font-orbitron text-xs font-bold tracking-wider text-cyan-400 group-hover:text-white transition-colors duration-300"
-                          style={{ textShadow: '0 0 12px rgba(0, 255, 255, 0.8)' }}>
-                      JOIN
-                    </span>
-                    
-                    {/* Animated Arrow */}
-                    <div className="flex space-x-0.5 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
-                      <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                      <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
 
             {/* Mobile Menu Button - Position absolue pour centrer le menu */}
             <div className="lg:hidden absolute right-0">
@@ -380,49 +316,6 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
                 </li>
               ))}
             </ul>
-
-            {/* Mobile Join Button */}
-            <div className="mt-6">
-              <div 
-                onClick={handleJoinRedirect}
-                className="relative group cursor-pointer"
-              >
-                <div className="bg-black/30 border-2 border-cyan-400/40 rounded-xl p-4 backdrop-blur-sm hover:border-purple-400/60 hover:bg-black/40 transition-all duration-300 overflow-hidden">
-                  
-                  {/* Animated Background */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/5 via-transparent to-purple-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  <div className="relative flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      {/* Join Icon */}
-                      <div className="w-8 h-8 border-2 border-cyan-400/60 rounded-lg flex items-center justify-center group-hover:border-purple-400/80 transition-colors duration-300">
-                        <div className="w-3 h-3 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full animate-pulse"
-                             style={{ boxShadow: '0 0 12px rgba(0, 255, 255, 0.8)' }}></div>
-                      </div>
-                      
-                      <div className="flex flex-col">
-                        <span className="font-orbitron text-sm font-bold tracking-widest text-cyan-400 group-hover:text-purple-400 transition-colors duration-300"
-                              style={{ textShadow: '0 0 12px rgba(0, 255, 255, 0.8)' }}>
-                          JOIN COMMUNITY
-                        </span>
-                        <span className="font-fira text-xs text-cyan-400/60 group-hover:text-purple-400/60 transition-colors duration-300">
-                          [INITIALIZE_ACCESS]
-                        </span>
-                      </div>
-                    </div>
-                    
-                    {/* Animated Arrows */}
-                    <div className="flex items-center space-x-1">
-                      <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
-                      <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-cyan-400 opacity-40 group-hover:opacity-80 transition-opacity duration-300 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                    </div>
-                  </div>
-
-                  {/* Scanning Line */}
-                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Mobile Status Footer */}
@@ -469,7 +362,8 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
             transform: translateY(0) scale(1); 
             opacity: 0.2;
           }
-          50% {transform: translateY(-8px) scale(1.1); 
+          50% { 
+            transform: translateY(-8px) scale(1.1); 
             opacity: 0.6;
           }
         }

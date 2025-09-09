@@ -1,0 +1,2 @@
+
+/// donner moi la page de formulaire d'inscription le table de bd associé et la page de login adaptée au style de notre site et adapter la partie de membership pour qu'il redirige vers ce page et aussi adapter le navigation

@@ -77,7 +77,7 @@ const Navigation = ({ showHeaderLogo, activeSection }) => {
           // Layout avec logo quand scrolled
           <div className="flex items-center justify-between">
             {/* Header Logo - Responsive sizing */}
-            <a className="transition-all duration-500 ease-out opacity-100 visible scale-100 translate-x-0" href="/">
+            <div className="transition-all duration-500 ease-out opacity-100 visible scale-100 translate-x-0">
               <div className="relative flex items-center gap-2 sm:gap-3">
                 <div className="relative">
                   <img 

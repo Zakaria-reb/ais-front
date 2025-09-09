@@ -1,6 +1,5 @@
 import {Routes,Route} from 'react-router-dom';
 import App from './App';
-import InscriptionPage from './pages/Inscription.jsx';
 
 function Main() {
 

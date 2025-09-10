@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Futuristic Tech Dashboard Design System - Dark IT Style
+All colors MUST be HSL. Cyberpunk-inspired with coding aesthetics.
+*/
+
+@layer base {
+  :root {
+    /* Base Colors - Futuristic Light Mode */
+    --background: 214 15% 97%;
+    --foreground: 214 35% 15%;
+
+    /* Card System */
+    --card: 0 0% 100%;
+    --card-foreground: 214 35% 15%;
+
+    /* Interactive Elements */
+    --popover: 0 0% 100%;
+    --popover-foreground: 214 35% 15%;
+
+    /* Brand Colors - Cyberpunk Blue */
+    --primary: 214 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 214 85% 75%;
+    --primary-dark: 214 100% 45%;
+
+    /* Secondary - Electric Purple */
+    --secondary: 280 100% 90%;
+    --secondary-foreground: 280 60% 25%;
+    --secondary-accent: 280 100% 70%;
+
+    /* Accent - Neon Cyan */
+    --accent: 190 100% 50%;
+    --accent-foreground: 214 35% 15%;
+    --accent-light: 190 100% 70%;
+
+    /* Status Colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Neutral Palette */
+    --muted: 220 13% 95%;
+    --muted-foreground: 220 8% 46%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 85% 57%;
+
+    /* Gradients - Cyberpunk Tech */
+    --gradient-primary: linear-gradient(135deg, hsl(214, 100%, 60%), hsl(280, 100%, 70%));
+    --gradient-secondary: linear-gradient(135deg, hsl(280, 100%, 90%), hsl(214, 85%, 95%));
+    --gradient-accent: linear-gradient(135deg, hsl(190, 100%, 50%), hsl(214, 100%, 60%));
+    --gradient-card: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(214, 15%, 97%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(220, 85%, 57%, 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(220, 85%, 57%, 0.1), 0 2px 4px -1px hsl(220, 85%, 57%, 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(220, 85%, 57%, 0.1), 0 4px 6px -2px hsl(220, 85%, 57%, 0.05);
+    --shadow-glow: 0 0 20px hsl(220, 85%, 57%, 0.3);
+
+    /* Animation */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Base Colors - Dark Tech Matrix */
+    --background: 214 25% 6%;
+    --foreground: 214 15% 90%;
+
+    /* Card System */
+    --card: 214 20% 10%;
+    --card-foreground: 214 15% 90%;
+
+    /* Interactive Elements */
+    --popover: 214 20% 10%;
+    --popover-foreground: 214 15% 90%;
+
+    /* Brand Colors - Electric Blue */
+    --primary: 214 100% 70%;
+    --primary-foreground: 214 25% 6%;
+    --primary-light: 214 85% 80%;
+    --primary-dark: 214 100% 55%;
+
+    /* Secondary - Electric Purple */
+    --secondary: 280 50% 20%;
+    --secondary-foreground: 280 100% 85%;
+    --secondary-accent: 280 100% 75%;
+
+    /* Accent - Neon Cyan */
+    --accent: 190 100% 60%;
+    --accent-foreground: 214 25% 6%;
+    --accent-light: 190 100% 75%;
+
+    /* Status Colors */
+    --success: 142 76% 45%;
+    --success-foreground: 220 20% 8%;
+    --warning: 38 92% 60%;
+    --warning-foreground: 220 20% 8%;
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 220 20% 8%;
+
+    /* Neutral Palette */
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 8% 65%;
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 220 85% 65%;
+
+    /* Gradients - Dark Cyberpunk */
+    --gradient-primary: linear-gradient(135deg, hsl(214, 100%, 70%), hsl(280, 100%, 75%));
+    --gradient-secondary: linear-gradient(135deg, hsl(280, 50%, 20%), hsl(214, 20%, 15%));
+    --gradient-accent: linear-gradient(135deg, hsl(190, 100%, 60%), hsl(214, 100%, 70%));
+    --gradient-card: linear-gradient(135deg, hsl(214, 20%, 10%), hsl(214, 15%, 12%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(220, 85%, 10%, 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(220, 85%, 10%, 0.4), 0 2px 4px -1px hsl(220, 85%, 10%, 0.2);
+    --shadow-lg: 0 10px 15px -3px hsl(220, 85%, 10%, 0.4), 0 4px 6px -2px hsl(220, 85%, 10%, 0.2);
+    --shadow-glow: 0 0 20px hsl(220, 85%, 65%, 0.4);
+    --sidebar-background: 214 30% 8%;
+    --sidebar-foreground: 214 15% 90%;
+    --sidebar-primary: 214 100% 70%;
+    --sidebar-primary-foreground: 214 30% 8%;
+    --sidebar-accent: 214 25% 12%;
+    --sidebar-accent-foreground: 214 15% 90%;
+    --sidebar-border: 214 20% 15%;
+    --sidebar-ring: 214 100% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-orbitron;
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsl(214 100% 60% / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(280 100% 70% / 0.05) 0%, transparent 50%);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Card Components */
+  .card-elevated {
+    @apply bg-gradient-to-br from-card to-muted/20 shadow-md hover:shadow-lg;
+    transition: var(--transition-smooth);
+  }
+
+  .card-glow {
+    @apply bg-gradient-to-br from-card to-muted/20;
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Button Variants */
+  .btn-gradient {
+    background: var(--gradient-primary);
+    @apply text-primary-foreground shadow-lg hover:shadow-xl;
+    transition: var(--transition-smooth);
+  }
+
+  .btn-accent {
+    background: var(--gradient-accent);
+    @apply text-accent-foreground shadow-lg hover:shadow-xl;
+    transition: var(--transition-smooth);
+  }
+
+  /* Status Indicators */
+  .status-open {
+    @apply bg-success/10 text-success border border-success/20;
+  }
+
+  .status-ongoing {
+    @apply bg-warning/10 text-warning border border-warning/20;
+  }
+
+  .status-closed {
+    @apply bg-muted text-muted-foreground border border-border;
+  }
+
+  /* Animations */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  from { box-shadow: var(--shadow-md); }
+  to { box-shadow: var(--shadow-glow); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px hsl(214 100% 70% / 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 20px hsl(214 100% 70% / 0.6), 0 0 30px hsl(280 100% 70% / 0.4);
+  }
+}
+
+@keyframes data-flow {
+  0% { transform: translateX(-100%) scaleX(0); }
+  50% { transform: translateX(0%) scaleX(1); }
+  100% { transform: translateX(100%) scaleX(0); }
+}
+
+@keyframes matrix-rain {
+  0% { opacity: 0; transform: translateY(-10px); }
+  50% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
+@layer utilities {
+  /* Semantic font helpers used throughout the app */
+  .font-orbitron { font-family: Orbitron, ui-sans-serif, system-ui, sans-serif; }
+  .font-jetbrains { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace; }
+
+  /* Semantic color utilities that reference the CSS variables */
+  .border-border { border-color: hsl(var(--border)); }
+  .bg-muted { background-color: hsl(var(--muted)); }
+  .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+  .bg-background { background-color: hsl(var(--background)); }
+  .text-foreground { color: hsl(var(--foreground)); }
+}

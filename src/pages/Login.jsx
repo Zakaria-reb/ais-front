@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Mail, Lock, Loader2, CheckCircle } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const LoginPage = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -54,13 +56,22 @@ const LoginPage = () => {
       // const data = await response.json();
 
       await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulated API call
+      // on success: set auth flag and navigate to members area
       // if (data.success) {
       //   setIsLoggedIn(true);
       // } else {
       //   setErrors({ general: data.message || "Erreur de connexion" });
       // }
 
+      // mark as authenticated for the members area (placeholder)
+      try {
+        localStorage.setItem('memberAuth', '1');
+      } catch (e) {
+        // ignore storage errors
+      }
+
       setIsLoggedIn(true);
+      navigate('/members');
     } catch (error) {
       setErrors({ general: "Erreur de connexion au serveur" });
     } finally {

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const MembershipSection = () => {
   const handleScrollToTop = () => {
@@ -128,12 +129,12 @@ const MembershipSection = () => {
                 Get access to cutting-edge resources, mentorship, and opportunities that will 
                 accelerate your career in technology.
               </p>
-              <div 
-                onClick={handleJoinRedirect}
+              <Link 
+                to="/members"
                 className="inline-block bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-12 py-4 rounded-lg font-rajdhani font-semibold text-xl hover:shadow-lg hover:shadow-purple-400/30 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:scale-105"
               >
                 Join Now
-              </div>
+              </Link>
             </div>
           </div>
 

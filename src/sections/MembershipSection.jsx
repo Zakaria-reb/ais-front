@@ -130,7 +130,7 @@ const MembershipSection = () => {
                 accelerate your career in technology.
               </p>
               <Link 
-                to="/members"
+                to="/connexion"
                 className="inline-block bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-12 py-4 rounded-lg font-rajdhani font-semibold text-xl hover:shadow-lg hover:shadow-purple-400/30 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:scale-105"
               >
                 Join Now

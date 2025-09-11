@@ -11,13 +11,10 @@ export async function getCurrentUser() {
 export async function login(credentialsOrUsername, maybePassword) {
   // Accept either login({ username, password }) or login(username, password)
   let username = undefined;
-  let password = undefined;
   if (typeof credentialsOrUsername === 'object') {
     username = credentialsOrUsername.username;
-    password = credentialsOrUsername.password;
   } else {
     username = credentialsOrUsername;
-    password = maybePassword;
   }
   // mock successful login
   localStorage.setItem('memberAuth', '1');

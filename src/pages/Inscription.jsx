@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, User, Phone, Calendar, MapPin, GraduationCap, Code, Loader2, CheckCircle } from 'lucide-react';
+import { Mail, User, Phone, GraduationCap, Code, Loader2, CheckCircle } from 'lucide-react';
 
 const InscriptionPage = () => {
   const [formData, setFormData] = useState({

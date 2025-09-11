@@ -1,0 +1,8 @@
+# Ignore build and generated files
+build/
+node_modules/
+.public/
+.history/
+
+# Optional: ignore public assets and misc
+public/

@@ -9,9 +9,7 @@ const MembershipSection = () => {
     });
   };
 
-  const handleJoinRedirect = () => {
-    window.location.href = '/inscription';
-  };
+  // CTA uses Link to /connexion now; no JS redirect required
 
   const membershipBenefits = [
     {

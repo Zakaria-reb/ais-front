@@ -9,7 +9,6 @@ import {
   Calendar, 
   Award, 
   FolderKanban,
-  Settings,
   Edit
 } from "lucide-react";
 
@@ -179,7 +178,7 @@ const MemberProfile = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {profile.projectsParticipated.map((project) => (
+                {(profile.projectsParticipated ?? []).map((project) => (
                   <div key={project.id} className="flex items-center justify-between p-4 rounded-lg bg-gradient-card border border-border/50 hover:border-primary/30 transition-all">
                     <div>
                       <h3 className="font-medium font-orbitron">{project.name}</h3>
@@ -204,7 +203,7 @@ const MemberProfile = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {profile.eventsAttended.map((event) => (
+                {(profile.eventsAttended ?? []).map((event) => (
                   <div key={event.id} className="flex items-center justify-between p-4 rounded-lg bg-gradient-card border border-border/50 hover:border-primary/30 transition-all">
                     <div>
                       <h3 className="font-medium font-orbitron">{event.name}</h3>
@@ -226,7 +225,7 @@ const MemberProfile = () => {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {profile.achievements.map((achievement) => (
+                {(profile.achievements ?? []).map((achievement) => (
                   <div key={achievement.id} className="p-4 rounded-lg bg-gradient-accent/10 border border-accent/20 hover:border-accent/40 transition-all animate-pulse-glow">
                     <div className="flex items-start space-x-3">
                       <span className="text-2xl">{achievement.icon}</span>

@@ -2,7 +2,7 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import { cn } from "../../lib/utils";
-import { Clock, Users, Calendar } from "lucide-react";
+import { Users, Calendar } from "lucide-react";
 
 interface ProjectCardProps {
   id: string;

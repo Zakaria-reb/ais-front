@@ -25,6 +25,10 @@ function App() {
   };
 
   // Hook pour l'intersection observer
+  // Intentionally omit `sectionRefs` from the dependency array because
+  // the refs themselves are stable (we only care about their .current nodes)
+  // and recreating the observer on each render would be expensive.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const observerOptions = {
       root: null,

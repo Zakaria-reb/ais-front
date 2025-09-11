@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../components/Logo";
-import ScrollIndicator from "../components/ScrollIndicator";
 import Typewriter from "../components/Typewriter";
 
 const HomeSection = ({ isScrolled }) => {

@@ -213,14 +213,16 @@ const AboutSection = () => {
         scrollElement.removeEventListener('mousemove', handleMouseMove);
         scrollElement.removeEventListener('keydown', handleKeyDown);
       }
-      
+
       document.removeEventListener('mousemove', handleMouseMove2);
       document.removeEventListener('mouseup', handleMouseUp);
-      
-      if (momentumRef.current.animationId) {
-        cancelAnimationFrame(momentumRef.current.animationId);
+
+      // Snapshot momentumRef.current to avoid reading a potentially changed ref
+      const m = momentumRef.current;
+      if (m && m.animationId) {
+        cancelAnimationFrame(m.animationId);
       }
-      
+
       clearTimeout(window.snapTimeout);
     };
   }, [handleScroll2, handleMouseDown, handleMouseMove2, handleMouseUp, handleMouseMove, handleKeyDown, checkScrollPosition]);

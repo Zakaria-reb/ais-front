@@ -3,10 +3,7 @@ import StatCard from "../components/StatCard";
 import { 
   FolderKanban, 
   GraduationCap, 
-  Calendar, 
-  TrendingUp,
-  Users,
-  MessageSquare,
+  Calendar,
   Plus,
   ArrowRight
 } from "lucide-react";

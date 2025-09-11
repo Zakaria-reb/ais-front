@@ -168,7 +168,7 @@ const InscriptionPage = () => {
       };
 
       // Replace with your actual backend URL
-      const response = await fetch.post('http://localhost:3001/api/inscriptions', backendData, {
+      const response = await post('http://localhost:3001/api/inscriptions', backendData, {  //axios.
         headers: {
           'Content-Type': 'application/json',
         },

@@ -125,7 +125,7 @@ const InscriptionPage = () => {
     }));
   };
 
-  const validateForm = () => {
+  /*const validateForm = () => {
     const newErrors = {};
 
     if (!formData.firstName.trim()) newErrors.firstName = 'Le prénom est requis';
@@ -168,7 +168,7 @@ const InscriptionPage = () => {
       };
 
       // Replace with your actual backend URL
-      const response = await fetch.post('http://localhost:3001/api/inscriptions', backendData, {
+      const response = await axios.post('http://localhost:3001/api/inscriptions', backendData, {
         headers: {
           'Content-Type': 'application/json',
         },

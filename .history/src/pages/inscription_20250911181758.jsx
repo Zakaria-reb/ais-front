@@ -168,7 +168,8 @@ const InscriptionPage = () => {
       };
 
       // Replace with your actual backend URL
-      const response = await fetch.post('http://localhost:3001/api/inscriptions', backendData, {
+      const response = await fetch('http://localhost:3001/api/inscriptions', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },

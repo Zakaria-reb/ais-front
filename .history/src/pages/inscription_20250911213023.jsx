@@ -570,8 +570,8 @@ const InscriptionPage = () => {
           </div>
           
           <div className="bg-black/30 border border-purple-400/20 rounded-lg p-6">
-            <MessageCircle className="w-8 h-8 text-green-400 mb-3" />
-            <h4 className="font-orbitron font-semibold text-green-400 mb-2">WhatsApp Group</h4>
+            <MessageCircle className="w-8 h-8 text-purple-400 mb-3" />
+            <h4 className="font-orbitron font-semibold text-purple-400 mb-2">WhatsApp Group</h4>
             <p className="font-rajdhani text-gray-300 text-sm">
               QR code inclus dans l'email de confirmation
             </p>
@@ -579,7 +579,7 @@ const InscriptionPage = () => {
           
           <div className="bg-black/30 border border-green-400/20 rounded-lg p-6">
             <CheckCircle className="w-8 h-8 text-yellow-400 mb-3" />
-            <h4 className="font-orbitron font-semibold text-yellow-400 mb-2">Contact Équipe</h4>
+            <h4 className="font-orbitron font-semibold text-green-400 mb-2">Contact Équipe</h4>
             <p className="font-rajdhani text-gray-300 text-sm">
               Suivi personnalisé sous 48h maximum
             </p>

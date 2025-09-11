@@ -39,7 +39,7 @@ const ActivitiesSection = () => {
     {
       title: "Cyber Security Training",
       description: "Comprehensive cybersecurity workshops covering threat detection, ethical hacking, and security protocols",
-      image: "/activities/cb.png",
+      image: "/activities/cb.jpg",
       alt: "Cyber Security Training",
       color: "from-yellow-500 to-orange-500"
     },
@@ -81,14 +81,14 @@ const ActivitiesSection = () => {
     {
       title: "Professional Development",
       description: "Leadership workshops and professional skill development programs",
-      image: "/activities/it.png",
+      image: "/activities/-dev.jpg",
       alt: "Professional Development",
       color: "from-red-500 to-pink-500"
     },
     {
       title: "Scientific Research Programs",
       description: "Research methodology workshops and scientific innovation competitions",
-      image: "/activities/talkin-training.jpg",
+      image: "/img/scientific-research.jpg",
       alt: "Scientific Research",
       color: "from-teal-500 to-blue-500"
     }
@@ -165,7 +165,7 @@ const ActivitiesSection = () => {
                 {/* Progress Indicator */}
                 <div className="mt-4 flex justify-center">
                   <div className="bg-black/30 border border-cyber-blue/20 rounded-full px-3 py-1">
-                    <span className="font-fira text-xs text-red-400"> NOT ACTIVE</span>
+                    <span className="font-fira text-xs text-green-400">ACTIVE</span>
                   </div>
                 </div>
 
@@ -200,10 +200,14 @@ const ActivitiesSection = () => {
             <div className="flex flex-wrap justify-center gap-4">
               <div className="bg-black/30 border border-cyber-blue/20 rounded-lg px-4 py-2">
                 <span className="font-fira text-sm text-cyber-blue">
-                  PROGRAMS: <span className="text-red-400">{activities.length} ACTIVITIES</span>
+                  PROGRAMS: <span className="text-green-400">{activities.length} ACTIVE</span>
                 </span>
               </div>
-              
+              <div className="bg-black/30 border border-purple-400/20 rounded-lg px-4 py-2">
+                <span className="font-fira text-sm text-purple-400">
+                  STATUS: <span className="text-green-400">ENROLLMENT_OPEN</span>
+                </span>
+              </div>
             </div>
           </div>
         </div>

@@ -41,55 +41,50 @@ const ContactSection = () => {
       label: "EMAIL",
       value: "contact@appinsciences.ma",
       description: "Send us your inquiries",
-      color: "text-red-400",
-      link: "mailto:contact@appinsciences.ma",
-      isClickable: true
+      color: "text-red-400" // Couleur Gmail
+    },
+    {
+      icon: MapPin,
+      label: "LOCATION",
+      value: "ENSA El Jadida, Morocco",
+      description: "Visit us on campus",
+      color: "text-red-500" // Couleur Google Maps
     },
     {
       icon: MessageCircle,
       label: "WHATSAPP",
       value: "+212 XX XX XX XX",
       description: "Chat with us instantly",
-      color: "text-green-500",
-      link: "https://wa.me/212XXXXXXXXX", // Replace with actual WhatsApp number
-      isClickable: true
+      color: "text-green-500" // Couleur WhatsApp
     },
     {
-      icon: Facebook,
-      label: "FACEBOOK",
-      value: "@AppinSciences",
-      description: "Follow our updates",
-      color: "text-blue-600",
-      link: "https://facebook.com/AppinSciences", // Replace with actual Facebook page
-      isClickable: true
-    },
-    {
-      icon: Instagram,
-      label: "INSTAGRAM", 
-      value: "@appinsciences",
-      description: "See our visual stories",
-      color: "text-pink-500",
-      link: "https://instagram.com/appinsciences", // Replace with actual Instagram
-      isClickable: true
-    },
-    {
-      icon: Music,
-      label: "TIKTOK",
-      value: "@appinsciences",
-      description: "Watch our creative content",
-      color: "text-black",
-      link: "https://tiktok.com/@appinsciences", // Replace with actual TikTok
-      isClickable: true
-    },
-    {
-      icon: Linkedin,
-      label: "LINKEDIN",
-      value: "AppinSciences ENSA",
-      description: "Connect professionally",
-      color: "text-blue-500",
-      link: "https://linkedin.com/company/appinsciences-ensa", // Replace with actual LinkedIn
-      isClickable: true
-    }
+  icon: Facebook,
+  label: "FACEBOOK",
+  value: "@AppinSciences",
+  description: "Follow our updates",
+  color: "text-blue-600" // Couleur Facebook
+},
+{
+  icon: Instagram,
+  label: "INSTAGRAM", 
+  value: "@appinsciences",
+  description: "See our visual stories",
+  color: "text-pink-500" // Couleur Instagram
+},
+{
+  icon: Music, // Lucide n'a pas d'icône TikTok spécifique, Music est une bonne alternative
+  label: "TIKTOK",
+  value: "@appinsciences",
+  description: "Watch our creative content",
+  color: "text-black" // Couleur TikTok (noir)
+},
+{
+  icon: Linkedin,
+  label: "LINKEDIN",
+  value: "AppinSciences ENSA",
+  description: "Connect professionally",
+  color: "text-blue-500" // Couleur LinkedIn
+}
   ];
 
   const handleScrollToTop = () => {
@@ -98,12 +93,6 @@ const ContactSection = () => {
         behavior: 'smooth'
       });
     };
-
-  const handleContactClick = (method) => {
-    if (method.isClickable && method.link) {
-      window.open(method.link, '_blank');
-    }
-  };
   
 
   return (
@@ -163,7 +152,7 @@ const ContactSection = () => {
           </div>
 
           {/* Contact Methods Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {contactMethods.map((method, index) => {
               const IconComponent = method.icon;
               return (
@@ -173,13 +162,12 @@ const ContactSection = () => {
                     visibleElements.has(`contact-${index}`)
                       ? 'translate-y-0 opacity-100'
                       : 'translate-y-12 opacity-0'
-                  } ${method.isClickable ? 'cursor-pointer' : ''}`}
+                  }`}
                   style={{ 
                     transitionDelay: visibleElements.has(`contact-${index}`) ? `${600 + index * 150}ms` : '0ms'
                   }}
                   ref={el => elementsRef.current[index + 2] = el}
                   data-index={`contact-${index}`}
-                  onClick={() => handleContactClick(method)}
                 >
                   {/* Icon */}
                   <div className="text-center mb-4">
@@ -209,62 +197,9 @@ const ContactSection = () => {
                   <div className="absolute top-2 left-2 w-0.5 h-6 bg-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute bottom-2 right-2 w-6 h-0.5 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute bottom-2 right-2 w-0.5 h-6 bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  {/* Click indicator for clickable items */}
-                  {method.isClickable && (
-                    <div className="absolute top-3 right-3 w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
-                  )}
                 </div>
               );
             })}
-          </div>
-
-          {/* Google Maps Embed for ENSA El Jadida */}
-          <div 
-            className={`mb-12 transform transition-all duration-1000 ${
-              visibleElements.has('map')
-                ? 'translate-y-0 opacity-100'
-                : 'translate-y-12 opacity-0'
-            }`}
-            style={{ transitionDelay: visibleElements.has('map') ? '900ms' : '0ms' }}
-            ref={el => elementsRef.current[8] = el}
-            data-index="map"
-          >
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center space-x-3 mb-4">
-                <MapPin size={24} className="text-red-500" />
-                <h3 className="font-orbitron text-2xl font-bold text-white">
-                  <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">
-                    FIND US
-                  </span>
-                </h3>
-              </div>
-              <p className="font-rajdhani text-lg text-white/80 mb-2">ENSA El Jadida, Morocco</p>
-              <p className="font-rajdhani text-sm text-white/60">Visit us on campus</p>
-            </div>
-            
-            <div className="relative rounded-2xl overflow-hidden border border-cyber-blue/30 shadow-2xl shadow-blue-400/20 group hover:border-blue-400/50 transition-all duration-700">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none"></div>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3372.8234567890123!2d-8.5009!3d33.2547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdaa2c4c4c4c4c4c4%3A0x1234567890abcdef!2sENSA%20El%20Jadida!5e0!3m2!1sen!2sma!4v1234567890123!5m2!1sen!2sma"
-                width="100%"
-                height="400"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-80 md:h-96 lg:h-[400px] group-hover:scale-105 transition-transform duration-700"
-                title="ENSA El Jadida Location"
-              ></iframe>
-              
-              {/* Map overlay decoration */}
-              <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm rounded-lg px-3 py-2 border border-blue-400/30 z-20">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                  <span className="font-fira text-xs text-white">LOCATION_MARKER</span>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Status Indicator */}
@@ -275,7 +210,7 @@ const ContactSection = () => {
                 : 'translate-y-4 opacity-0'
             }`}
             style={{ transitionDelay: visibleElements.has('status') ? '1200ms' : '0ms' }}
-            ref={el => elementsRef.current[9] = el}
+            ref={el => elementsRef.current[6] = el}
             data-index="status"
           >
             <div className="inline-flex items-center space-x-3 bg-black/30 border border-blue-400/20 rounded-lg px-6 py-3">
@@ -286,8 +221,9 @@ const ContactSection = () => {
             </div>
           </div>
         </div>
-
-        {/* Back to Top Button */}
+      </div>
+     
+      {/* Back to Top Button */}
         <div 
           className={`text-center transform transition-all duration-1000 ${
             visibleElements.has('back-to-top')
@@ -295,7 +231,7 @@ const ContactSection = () => {
               : 'translate-y-6 opacity-0'
           }`}
           style={{ transitionDelay: visibleElements.has('back-to-top') ? '1600ms' : '0ms' }}
-          ref={el => elementsRef.current[10] = el}
+          ref={el => elementsRef.current[8] = el}
           data-index="back-to-top"
         >
           <div
@@ -314,7 +250,6 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

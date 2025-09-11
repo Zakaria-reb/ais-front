@@ -111,7 +111,7 @@ const LoginPage = () => {
         <div className="absolute bottom-24 right-20 w-40 h-40 border-2 border-cyber-blue/15 rotate-45 animate-spin-slow"></div>
       </div>
 
-      <div className="max-w-md w-full relative z-10 mt-10 mb-10">
+      <div className="max-w-md w-full relative z-10 mt-2">
         <div className="text-center mb-8">
           <span className="font-fira text-sm text-purple-400 bg-purple-400/10 px-4 py-2 rounded-full border border-purple-400/30">
             [LOGIN_PROTOCOL]

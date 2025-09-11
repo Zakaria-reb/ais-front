@@ -80,7 +80,7 @@ const EventsSection = () => {
       date: "February 2025",
       type: "CONFERENCE",
       color: "from-teal-600 to-green-600",
-      image: "/events/dv.jpg", // Your DevFest event image
+      image: "//dv.png", // Your DevFest event image
       alt: "DevFest poster"
     }
   ];

@@ -44,7 +44,7 @@ const EventsSection = () => {
       date: "March 2025",
       type: "COMPETITION",
       color: "from-green-600 to-emerald-600",
-      image: "/events/hack.jpg", // Your hackathon event image
+      image: "/img/ev1.png", // Your hackathon event image
       alt: "Hackathon event poster"
     },
     {
@@ -53,7 +53,7 @@ const EventsSection = () => {
       date: "June 2025", 
       type: "CONFERENCE",
       color: "from-purple-600 to-pink-600",
-      image: "/events/Cq.jpg", // Your CyberQuest event image
+      image: "/img/ev2.png", // Your CyberQuest event image
       alt: "CyberQuest 3.0 event poster"
     },
     {
@@ -62,26 +62,35 @@ const EventsSection = () => {
       date: "September 2025",
       type: "EXCHANGE",
       color: "from-blue-600 to-cyan-600",
-      image: "/events/era.jpg", // Your Era's Exchange event image
+      image: "/img/ev3.png", // Your Era's Exchange event image
       alt: "Era's Exchange event poster"
     },
     {
-      name: "RACKATHON",
+      name: "IT FORM Workshop",
+      description: "Technical workshop series on modern IT practices and tools",
+      date: "November 2025",
+      type: "WORKSHOP",
+      color: "from-indigo-600 to-blue-600",
+      image: "/img/ev1.png", // Your IT Form event image
+      alt: "IT Form workshop poster"
+    },
+    {
+      name: "Cyber Security Summit",
       description: "Annual cybersecurity awareness and training summit",
       date: "December 2025",
       type: "SUMMIT",
       color: "from-red-600 to-orange-600",
-      image: "/img/im3.jpg", // Your Cyber Security event image
+      image: "/img/ev2.png", // Your Cyber Security event image
       alt: "Cyber Security Summit poster"
     },
     {
-      name: "DevFest",
+      name: "ATekTalk Conference",
       description: "Technology talks and networking event with industry experts",
       date: "February 2025",
       type: "CONFERENCE",
       color: "from-teal-600 to-green-600",
-      image: "/events/dv.jpg", // Your DevFest event image
-      alt: "DevFest poster"
+      image: "/img/ev3.png", // Your ATekTalk event image
+      alt: "ATekTalk Conference poster"
     }
   ];
 

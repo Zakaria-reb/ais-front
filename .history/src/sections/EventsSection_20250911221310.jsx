@@ -44,7 +44,7 @@ const EventsSection = () => {
       date: "March 2025",
       type: "COMPETITION",
       color: "from-green-600 to-emerald-600",
-      image: "/events/hack.jpg", // Your hackathon event image
+      image: "/img/ev1.png", // Your hackathon event image
       alt: "Hackathon event poster"
     },
     {
@@ -53,35 +53,44 @@ const EventsSection = () => {
       date: "June 2025", 
       type: "CONFERENCE",
       color: "from-purple-600 to-pink-600",
-      image: "/events/Cq.jpg", // Your CyberQuest event image
+      image: "/img/ev2.png", // Your CyberQuest event image
       alt: "CyberQuest 3.0 event poster"
     },
     {
-      name: "Era's Exchange",
+      name: "ESIT Exchange",
       description: "International student and professional exchange program",
       date: "September 2025",
       type: "EXCHANGE",
       color: "from-blue-600 to-cyan-600",
-      image: "/events/era.jpg", // Your Era's Exchange event image
-      alt: "Era's Exchange event poster"
+      image: "/img/ev3.png", // Your ESIT Exchange event image
+      alt: "ESIT Exchange event poster"
     },
     {
-      name: "RACKATHON",
+      name: "IT FORM Workshop",
+      description: "Technical workshop series on modern IT practices and tools",
+      date: "November 2025",
+      type: "WORKSHOP",
+      color: "from-indigo-600 to-blue-600",
+      image: "/img/ev1.png", // Your IT Form event image
+      alt: "IT Form workshop poster"
+    },
+    {
+      name: "Cyber Security Summit",
       description: "Annual cybersecurity awareness and training summit",
       date: "December 2025",
       type: "SUMMIT",
       color: "from-red-600 to-orange-600",
-      image: "/img/im3.jpg", // Your Cyber Security event image
+      image: "/img/ev2.png", // Your Cyber Security event image
       alt: "Cyber Security Summit poster"
     },
     {
-      name: "DevFest",
+      name: "ATekTalk Conference",
       description: "Technology talks and networking event with industry experts",
       date: "February 2025",
       type: "CONFERENCE",
       color: "from-teal-600 to-green-600",
-      image: "/events/dv.jpg", // Your DevFest event image
-      alt: "DevFest poster"
+      image: "/img/ev3.png", // Your ATekTalk event image
+      alt: "ATekTalk Conference poster"
     }
   ];
 
@@ -122,7 +131,7 @@ const EventsSection = () => {
           <div className="relative">
             {/* Timeline Line */}
             <div 
-              className={`absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-cyber-blue via-cyan-400 to-purple-400 rounded-full transition-all duration-500 ${
+              className={`absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-cyber-blue via-cyan-400 to-purple-400 rounded-full transition-all duration-1500 ${
                 visibleElements.has('timeline') 
                   ? 'h-full opacity-100' 
                   : 'h-0 opacity-0'
@@ -198,7 +207,7 @@ const EventsSection = () => {
                       ref={el => elementsRef.current[index + 5] = el}
                       data-index={`node-${index}`}
                       style={{ 
-                        transitionDelay: visibleElements.has(`node-${index}`) ? `${300 + index * 100}ms` : '0ms'
+                        transitionDelay: visibleElements.has(`node-${index}`) ? `${800 + index * 200}ms` : '0ms'
                       }}
                     ></div>
                   </div>
@@ -214,7 +223,7 @@ const EventsSection = () => {
                       ref={el => elementsRef.current[index + 8] = el}
                       data-index={`date-${index}`}
                       style={{ 
-                        transitionDelay: visibleElements.has(`date-${index}`) ? `${400 + index * 100}ms` : '0ms'
+                        transitionDelay: visibleElements.has(`date-${index}`) ? `${400 + index * 200}ms` : '0ms'
                       }}
                     >
                       {event.date.split(' ')[0]}

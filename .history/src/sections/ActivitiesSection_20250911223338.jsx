@@ -88,7 +88,7 @@ const ActivitiesSection = () => {
     {
       title: "Scientific Research Programs",
       description: "Research methodology workshops and scientific innovation competitions",
-      image: "/activities/talkin-training.jpg",
+      image: "/activities/talkin_training.jpg",
       alt: "Scientific Research",
       color: "from-teal-500 to-blue-500"
     }

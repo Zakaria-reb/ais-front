@@ -88,7 +88,7 @@ const ActivitiesSection = () => {
     {
       title: "Scientific Research Programs",
       description: "Research methodology workshops and scientific innovation competitions",
-      image: "/activities/talkin-training.jpg",
+      image: "/activities/talkin_training.jpg",
       alt: "Scientific Research",
       color: "from-teal-500 to-blue-500"
     }
@@ -165,7 +165,7 @@ const ActivitiesSection = () => {
                 {/* Progress Indicator */}
                 <div className="mt-4 flex justify-center">
                   <div className="bg-black/30 border border-cyber-blue/20 rounded-full px-3 py-1">
-                    <span className="font-fira text-xs text-red-400"> NOT ACTIVE</span>
+                    <span className="font-fira text-xs text-RED-400">ACTIVE</span>
                   </div>
                 </div>
 

@@ -104,14 +104,14 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cyber-dark via-cyber-darker to-cyber-darkest flex items-center justify-center px-4 relative">
+    <div className="min-h-screen bg-gradient-to-br from-cyber-dark via-cyber-darker to-cyber-darkest flex items-center justify-center px-4">
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-24 left-16 w-32 h-32 border border-purple-400/20 rounded-full animate-pulse"></div>
         <div className="absolute bottom-24 right-20 w-40 h-40 border-2 border-cyber-blue/15 rotate-45 animate-spin-slow"></div>
       </div>
 
-      <div className="max-w-md w-full relative z-10 mt-10 mb-10">
+      <div className="max-w-md w-full relative z-10">
         <div className="text-center mb-8">
           <span className="font-fira text-sm text-purple-400 bg-purple-400/10 px-4 py-2 rounded-full border border-purple-400/30">
             [LOGIN_PROTOCOL]

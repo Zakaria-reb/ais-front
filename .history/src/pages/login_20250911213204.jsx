@@ -1,5 +1,30 @@
 import React, { useState } from "react";
-import { Mail, Lock, Loader2, CheckCircle, MessageCircle } from "lucide-react";
+import { Mail, Lock, Loader2, CheckCircle, {/* Info Panel */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-black/30 border border-cyber-blue/20 rounded-lg p-6">
+            <Mail className="w-8 h-8 text-cyber-blue mb-3" />
+            <h4 className="font-orbitron font-semibold text-cyber-blue mb-2">Confirmation Email</h4>
+            <p className="font-rajdhani text-gray-300 text-sm">
+              Vérifiez votre boîte mail après l'inscription
+            </p>
+          </div>
+          
+          <div className="bg-black/30 border border-purple-400/20 rounded-lg p-6">
+            <MessageCircle className="w-8 h-8 text-green-400 mb-3" />
+            <h4 className="font-orbitron font-semibold text-green-400 mb-2">WhatsApp Group</h4>
+            <p className="font-rajdhani text-gray-300 text-sm">
+              QR code inclus dans l'email de confirmation
+            </p>
+          </div>
+          
+          <div className="bg-black/30 border border-green-400/20 rounded-lg p-6">
+            <CheckCircle className="w-8 h-8 text-yellow-400 mb-3" />
+            <h4 className="font-orbitron font-semibold text-yellow-400 mb-2">Contact Équipe</h4>
+            <p className="font-rajdhani text-gray-300 text-sm">
+              Suivi personnalisé sous 48h maximum
+            </p>
+          </div>
+        </div> } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
@@ -111,7 +136,7 @@ const LoginPage = () => {
         <div className="absolute bottom-24 right-20 w-40 h-40 border-2 border-cyber-blue/15 rotate-45 animate-spin-slow"></div>
       </div>
 
-      <div className="max-w-md w-full relative z-10 mt-10 mb-10">
+      <div className="max-w-md w-full relative z-10">
         <div className="text-center mb-8">
           <span className="font-fira text-sm text-purple-400 bg-purple-400/10 px-4 py-2 rounded-full border border-purple-400/30">
             [LOGIN_PROTOCOL]

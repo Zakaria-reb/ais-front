@@ -66,22 +66,31 @@ const EventsSection = () => {
       alt: "Era's Exchange event poster"
     },
     {
-      name: "RACKATHON",
+      name: "IT FORM Workshop",
+      description: "Technical workshop series on modern IT practices and tools",
+      date: "November 2025",
+      type: "WORKSHOP",
+      color: "from-indigo-600 to-blue-600",
+      image: "/img/ev1.png", // Your IT Form event image
+      alt: "IT Form workshop poster"
+    },
+    {
+      name: "Cyber Security Summit",
       description: "Annual cybersecurity awareness and training summit",
       date: "December 2025",
       type: "SUMMIT",
       color: "from-red-600 to-orange-600",
-      image: "/img/im3.jpg", // Your Cyber Security event image
+      image: "/img/ev2.png", // Your Cyber Security event image
       alt: "Cyber Security Summit poster"
     },
     {
-      name: "DevFest",
+      name: "ATekTalk Conference",
       description: "Technology talks and networking event with industry experts",
       date: "February 2025",
       type: "CONFERENCE",
       color: "from-teal-600 to-green-600",
-      image: "/events/dv.jpg", // Your DevFest event image
-      alt: "DevFest poster"
+      image: "/img/ev3.png", // Your ATekTalk event image
+      alt: "ATekTalk Conference poster"
     }
   ];
 

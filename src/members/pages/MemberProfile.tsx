@@ -130,19 +130,19 @@ const MemberProfile = () => {
         {/* Profile Information */}
         <div className="lg:col-span-1">
           <Card className="card-elevated border border-primary/20">
-            <CardHeader className="text-center">
+      <CardHeader className="text-center">
               <div className="mx-auto w-24 h-24 bg-gradient-primary rounded-full flex items-center justify-center mb-4 animate-pulse-glow">
                 <User className="w-12 h-12 text-primary-foreground" />
               </div>
-              <CardTitle className="font-orbitron">{userProfile.fullName}</CardTitle>
-              <p className="text-muted-foreground font-jetbrains">@{userProfile.username}</p>
+      <CardTitle className="font-orbitron">{profile.fullName}</CardTitle>
+      <p className="text-muted-foreground font-jetbrains">@{profile.username}</p>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 p-3 rounded-lg bg-muted/50">
                   <GraduationCap className="w-5 h-5 text-primary" />
                   <div>
-                    <p className="text-sm font-medium">{userProfile.yearOfStudy}</p>
+        <p className="text-sm font-medium">{profile.yearOfStudy}</p>
                     <p className="text-xs text-muted-foreground">Computer Science</p>
                   </div>
                 </div>
@@ -150,7 +150,7 @@ const MemberProfile = () => {
                 <div className="flex items-center space-x-3 p-3 rounded-lg bg-muted/50">
                   <Mail className="w-5 h-5 text-primary" />
                   <div>
-                    <p className="text-sm font-medium font-jetbrains">{userProfile.email}</p>
+        <p className="text-sm font-medium font-jetbrains">{profile.email}</p>
                     <p className="text-xs text-muted-foreground">Primary email</p>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ const MemberProfile = () => {
                 <div className="flex items-center space-x-3 p-3 rounded-lg bg-muted/50">
                   <Phone className="w-5 h-5 text-primary" />
                   <div>
-                    <p className="text-sm font-medium font-jetbrains">{userProfile.phone}</p>
+        <p className="text-sm font-medium font-jetbrains">{profile.phone}</p>
                     <p className="text-xs text-muted-foreground">Mobile number</p>
                   </div>
                 </div>
@@ -179,7 +179,7 @@ const MemberProfile = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {userProfile.projectsParticipated.map((project) => (
+                {profile.projectsParticipated.map((project) => (
                   <div key={project.id} className="flex items-center justify-between p-4 rounded-lg bg-gradient-card border border-border/50 hover:border-primary/30 transition-all">
                     <div>
                       <h3 className="font-medium font-orbitron">{project.name}</h3>
@@ -204,7 +204,7 @@ const MemberProfile = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {userProfile.eventsAttended.map((event) => (
+                {profile.eventsAttended.map((event) => (
                   <div key={event.id} className="flex items-center justify-between p-4 rounded-lg bg-gradient-card border border-border/50 hover:border-primary/30 transition-all">
                     <div>
                       <h3 className="font-medium font-orbitron">{event.name}</h3>
@@ -226,7 +226,7 @@ const MemberProfile = () => {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {userProfile.achievements.map((achievement) => (
+                {profile.achievements.map((achievement) => (
                   <div key={achievement.id} className="p-4 rounded-lg bg-gradient-accent/10 border border-accent/20 hover:border-accent/40 transition-all animate-pulse-glow">
                     <div className="flex items-start space-x-3">
                       <span className="text-2xl">{achievement.icon}</span>

@@ -1,4 +1,6 @@
 module.exports = {
+  // Enable dark mode using the `.dark` class on the root element
+  darkMode: 'class',
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
     './src/members/**/*.{js,jsx,ts,tsx,css}'

@@ -19,12 +19,13 @@ const Layout = () => {
   const location = useLocation();
 
   const navigation = [
-    { name: 'Home', href: '/', icon: Home },
-    { name: 'Projects', href: '/projects', icon: FolderKanban },
-    { name: 'Calendar', href: '/calendar', icon: Calendar },
-    { name: 'Notifications', href: '/notifications', icon: Bell, badge: 3 },
-    { name: 'Trainings & Resources', href: '/trainings', icon: GraduationCap },
-    { name: 'Member Profile', href: '/profile', icon: Users },
+  // Use relative paths so these resolve under the /members base route
+  { name: 'Home', href: '', icon: Home },
+  { name: 'Projects', href: 'projects', icon: FolderKanban },
+  { name: 'Calendar', href: 'calendar', icon: Calendar },
+  { name: 'Notifications', href: 'notifications', icon: Bell, badge: 3 },
+  { name: 'Trainings & Resources', href: 'trainings', icon: GraduationCap },
+  { name: 'Member Profile', href: 'profile', icon: Users },
   ];
 
   return (
@@ -68,12 +69,18 @@ const Layout = () => {
           <nav className="flex-1 px-4 py-6 space-y-2 relative z-10">
             {navigation.map((item) => {
               const Icon = item.icon;
-              const isActive = location.pathname === item.href;
-              
+              // Resolve link: empty href means the members index
+              // Always use absolute /members/... paths to avoid routing out of the members area
+              const to = item.href === '' ? '/members' : `/members/${item.href}`;
+              // Active when the current pathname equals /members (home) or starts with /members/<href>
+              const isActive = item.href === ''
+                ? location.pathname === '/members' || location.pathname === '/members/'
+                : location.pathname.startsWith(`/members/${item.href}`);
+
               return (
                 <Link
                   key={item.name}
-                  to={item.href}
+                  to={to}
                   className={cn(
                     "flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium font-jetbrains transition-all duration-200 relative group",
                     isActive

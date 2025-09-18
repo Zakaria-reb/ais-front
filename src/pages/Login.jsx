@@ -47,21 +47,22 @@ const LoginPage = () => {
 
     try {
       // TODO: Replace with your real backend call
-      // Example:
-      // const response = await fetch("/api/login", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(formData)
-      // });
-      // const data = await response.json();
+      const response = await fetch("http://localhost:8081/api/v1/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+      const data = await response.json();
 
       await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulated API call
       // on success: set auth flag and navigate to members area
-      // if (data.success) {
-      //   setIsLoggedIn(true);
-      // } else {
-      //   setErrors({ general: data.message || "Erreur de connexion" });
-      // }
+      if (data.success) {
+        setIsLoggedIn(true);
+      } else {
+        setErrors({ general: data.message || "Erreur de connexion" });
+        setIsSubmitting(false);
+        return;
+      }
 
       // mark as authenticated for the members area (placeholder)
       try {

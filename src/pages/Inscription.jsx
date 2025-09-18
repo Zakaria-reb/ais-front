@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-//import axios from 'axios';
-import { Mail, User, Phone, Calendar, MapPin, GraduationCap, Code, Loader2, CheckCircle, Home, LogIn, MessageCircle } from 'lucide-react';
+import { Mail, User, Phone, Calendar, MapPin, GraduationCap, Code, Loader2, CheckCircle, Home, LogIn, MessageCircle, Lock, UserCheck } from 'lucide-react';
+
 const InscriptionPage = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
-    phone: '',
+    phoneNumber: '',
+    gender: '',
+    password: '',
+    confirmPassword: '',
     university: 'ENSA El Jadida',
-    field: '',
-    level: '',
+    major: '',
+    academicYear: '',
     programmingExperience: '',
     interests: [],
     agreeTerms: false
@@ -19,7 +22,7 @@ const InscriptionPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const interests = [
+  const interestsList = [
     'Web Development',
     'Mobile Development', 
     'Data Science',
@@ -58,27 +61,32 @@ const InscriptionPage = () => {
     'Augmented Reality'
   ];
 
-  const fields = [
-    { value: 'isic', label: 'Ingénierie des systèmes d\'information et de communication (ISIC)' },
-    { value: 'g2e', label: 'Génie Energétique et Electrique (G2E)' },
-    { value: 'gi', label: 'Génie Industriel (GI)' },
-    { value: '2ite', label: 'Ingénierie Informatique et Technologies émergentes (2ITE)' },
-    { value: 'gc', label: 'Génie Civil (GC)' },
-    { value: 'ccn', label: 'Cybersécurité et Confiance Numérique (CCN)' },
-    { value: 'master-ai', label: 'Master Intelligence Artificielle' },
-    { value: 'prepa-1', label: '1ère année Cycle Préparatoire' },
-    { value: 'prepa-2', label: '2ème année Cycle Préparatoire' }
+  const majors = [
+    { value: 'ISIC', label: 'Ingénierie des systèmes d\'information et de communication (ISIC)' },
+    { value: 'G2E', label: 'Génie Energétique et Electrique (G2E)' },
+    { value: 'GI', label: 'Génie Industriel (GI)' },
+    { value: '2ITE', label: 'Ingénierie Informatique et Technologies émergentes (2ITE)' },
+    { value: 'GC', label: 'Génie Civil (GC)' },
+    { value: 'CCN', label: 'Cybersécurité et Confiance Numérique (CCN)' },
+    { value: 'Master-AI', label: 'Master Intelligence Artificielle' },
+    { value: 'Prepa-1', label: '1ère année Cycle Préparatoire' },
+    { value: 'Prepa-2', label: '2ème année Cycle Préparatoire' }
   ];
 
-  const getLevels = (selectedField) => {
-    if (selectedField === 'prepa-1' || selectedField === 'prepa-2') {
+  const getAcademicYears = (selectedMajor) => {
+    if (selectedMajor === 'Prepa-1' || selectedMajor === 'Prepa-2') {
       return [];
     }
-    if (selectedField === 'master-ai') {
+    if (selectedMajor === 'Master-AI') {
       return ['Master 1', 'Master 2'];
     }
     return ['1ère année', '2ème année', '3ème année'];
   };
+
+  const genderOptions = [
+    { value: 'male', label: 'Homme' },
+    { value: 'female', label: 'Femme' }
+  ];
 
   const programmingLevels = [
     { value: 'none', label: 'Aucune expérience' },
@@ -94,11 +102,11 @@ const InscriptionPage = () => {
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     
-    if (name === 'field') {
+    if (name === 'major') {
       setFormData(prev => ({
         ...prev,
         [name]: value,
-        level: '' 
+        academicYear: '' 
       }));
     } else {
       setFormData(prev => ({
@@ -128,6 +136,7 @@ const InscriptionPage = () => {
   const validateForm = () => {
     const newErrors = {};
 
+    // Required fields validation
     if (!formData.firstName.trim()) newErrors.firstName = 'Le prénom est requis';
     if (!formData.lastName.trim()) newErrors.lastName = 'Le nom est requis';
     if (!formData.email.trim()) {
@@ -135,14 +144,25 @@ const InscriptionPage = () => {
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Format d\'email invalide';
     }
-    if (!formData.phone.trim()) newErrors.phone = 'Le téléphone est requis';
-    if (!formData.field) newErrors.field = 'La filière est requise';
+    if (!formData.phoneNumber.trim()) newErrors.phoneNumber = 'Le téléphone est requis';
+    if (!formData.gender) newErrors.gender = 'Le genre est requis';
+    if (!formData.major) newErrors.major = 'La filière est requise';
+    if (!formData.password) newErrors.password = 'Le mot de passe est requis';
+    if (!formData.confirmPassword) newErrors.confirmPassword = 'Confirmez votre mot de passe';
     if (!formData.agreeTerms) newErrors.agreeTerms = 'Vous devez accepter les conditions';
 
-    // Only validate level if field requires it
-    const selectedField = fields.find(f => f.value === formData.field);
-    if (selectedField && !['prepa-1', 'prepa-2'].includes(formData.field) && !formData.level) {
-      newErrors.level = 'Le niveau est requis';
+    // Password validation
+    if (formData.password && formData.password.length < 6) {
+      newErrors.password = 'Le mot de passe doit contenir au moins 6 caractères';
+    }
+    if (formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Les mots de passe ne correspondent pas';
+    }
+
+    // Only validate academicYear if major requires it
+    const selectedMajor = majors.find(m => m.value === formData.major);
+    if (selectedMajor && !['Prepa-1', 'Prepa-2'].includes(formData.major) && !formData.academicYear) {
+      newErrors.academicYear = 'Le niveau d\'études est requis';
     }
 
     setErrors(newErrors);
@@ -150,51 +170,73 @@ const InscriptionPage = () => {
   };
 
   const handleSubmit = async () => {
-    if (!validateForm()) return;
+  if (!validateForm()) return;
 
-    setIsSubmitting(true);
+  setIsSubmitting(true);
+  
+  try {
+    // Préparer les données pour Google Apps Script
+    const googleSheetData = {
+      email: formData.email,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      phoneNumber: formData.phoneNumber,
+      gender: formData.gender,
+      major: formData.major,
+      academicYear: formData.academicYear || formData.major,
+      programmingExperience: formData.programmingExperience,
+      interests: formData.interests.join(', ')
+    };
+
+    console.log('Sending data to Google Sheets:', googleSheetData);
+
+    // Remplacez cette URL par votre URL de déploiement Apps Script
+    const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyYCq1_ay-8iLgaVaY8hUE8jmsYruSHaLNvbzRx1oDP380gJUaX6U_hmCUmx1fl90/exec';
+
+    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(googleSheetData),
+      mode: 'no-cors' // Important pour éviter les erreurs CORS
+    });
+
+    // Avec mode 'no-cors', on ne peut pas lire la réponse
+    // On considère que ça a marché si aucune erreur n'est levée
+    console.log('Data sent to Google Sheets successfully');
+    setIsSubmitted(true);
     
+    // Optionnel : Envoyer aussi à votre backend local
     try {
-      // Prepare data for backend (excluding university and agreeTerms)
-      const backendData = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        field: formData.field,
-        level: formData.level,
-        programmingExperience: formData.programmingExperience,
-        interests: formData.interests
-      };
-
-      // Replace with your actual backend URL
-      const response = await fetch.post('http://localhost:3001/api/inscriptions', backendData, {
+      await fetch('http://localhost:8081/api/v1/auth/signup', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+          email: formData.email,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          phoneNumber: formData.phoneNumber,
+          gender: formData.gender,
+          major: formData.major,
+          academicYear: formData.academicYear || formData.major,
+          interests: formData.interests.join(', '),
+          password: formData.password
+        })
       });
-
-      console.log('Inscription successful:', response.data);
-      setIsSubmitted(true);
-      
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      
-      // Handle different types of errors
-      if (error.response) {
-        // Server responded with error status
-        alert(`Erreur du serveur: ${error.response.data.message || 'Une erreur est survenue'}`);
-      } else if (error.request) {
-        // Request was made but no response received
-        alert('Erreur de connexion. Vérifiez votre connexion internet.');
-      } else {
-        // Something else happened
-        alert('Une erreur inattendue est survenue.');
-      }
-    } finally {
-      setIsSubmitting(false);
+    } catch (backendError) {
+      console.log('Backend not available, but Google Sheets worked');
     }
-  };
+    
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    alert('Une erreur est survenue. Veuillez réessayer.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const resetForm = () => {
     setIsSubmitted(false);
@@ -202,10 +244,13 @@ const InscriptionPage = () => {
       firstName: '',
       lastName: '',
       email: '',
-      phone: '',
+      phoneNumber: '',
+      gender: '',
+      password: '',
+      confirmPassword: '',
       university: 'ENSA El Jadida',
-      field: '',
-      level: '',
+      major: '',
+      academicYear: '',
       programmingExperience: '',
       interests: [],
       agreeTerms: false
@@ -314,6 +359,7 @@ const InscriptionPage = () => {
             d'innovation et de collaboration technologique.
           </p>
         </div>
+
         {/* Navigation Buttons */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
           <button 
@@ -394,15 +440,75 @@ const InscriptionPage = () => {
                   <label className="block font-rajdhani text-gray-300 mb-2">Téléphone *</label>
                   <input
                     type="tel"
-                    name="phone"
-                    value={formData.phone}
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
                     onChange={handleInputChange}
                     className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.phone ? 'border-red-400 focus:ring-red-400/50' : 'border-cyber-blue/30 focus:ring-cyber-blue/50 focus:border-cyber-blue'
+                      errors.phoneNumber ? 'border-red-400 focus:ring-red-400/50' : 'border-cyber-blue/30 focus:ring-cyber-blue/50 focus:border-cyber-blue'
                     }`}
                     placeholder="+212 6 XX XX XX XX"
                   />
-                  {errors.phone && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.phone}</span>}
+                  {errors.phoneNumber && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.phoneNumber}</span>}
+                </div>
+
+                <div>
+                  <label className="block font-rajdhani text-gray-300 mb-2">Genre *</label>
+                  <select
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleInputChange}
+                    className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani focus:outline-none focus:ring-2 transition-all duration-300 ${
+                      errors.gender ? 'border-red-400 focus:ring-red-400/50' : 'border-cyber-blue/30 focus:ring-cyber-blue/50 focus:border-cyber-blue'
+                    }`}
+                  >
+                    <option value="">Sélectionnez votre genre</option>
+                    {genderOptions.map(option => (
+                      <option key={option.value} value={option.value} className="bg-cyber-darkest">
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.gender && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.gender}</span>}
+                </div>
+              </div>
+            </div>
+
+            {/* Security Information */}
+            <div>
+              <h3 className="font-orbitron text-xl font-semibold text-green-400 mb-6 flex items-center space-x-3">
+                <Lock className="w-5 h-5" />
+                <span>Sécurité du Compte</span>
+              </h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block font-rajdhani text-gray-300 mb-2">Mot de passe *</label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                      errors.password ? 'border-red-400 focus:ring-red-400/50' : 'border-green-400/30 focus:ring-green-400/50 focus:border-green-400'
+                    }`}
+                    placeholder="••••••••"
+                  />
+                  {errors.password && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.password}</span>}
+                </div>
+
+                <div>
+                  <label className="block font-rajdhani text-gray-300 mb-2">Confirmer le mot de passe *</label>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                    className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                      errors.confirmPassword ? 'border-red-400 focus:ring-red-400/50' : 'border-green-400/30 focus:ring-green-400/50 focus:border-green-400'
+                    }`}
+                    placeholder="••••••••"
+                  />
+                  {errors.confirmPassword && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.confirmPassword}</span>}
                 </div>
               </div>
             </div>
@@ -429,41 +535,41 @@ const InscriptionPage = () => {
                 <div>
                   <label className="block font-rajdhani text-gray-300 mb-2">Filière *</label>
                   <select
-                    name="field"
-                    value={formData.field}
+                    name="major"
+                    value={formData.major}
                     onChange={handleInputChange}
                     className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.field ? 'border-red-400 focus:ring-red-400/50' : 'border-purple-400/30 focus:ring-purple-400/50 focus:border-purple-400'
+                      errors.major ? 'border-red-400 focus:ring-red-400/50' : 'border-purple-400/30 focus:ring-purple-400/50 focus:border-purple-400'
                     }`}
                   >
                     <option value="">Sélectionnez votre filière</option>
-                    {fields.map(field => (
-                      <option key={field.value} value={field.value} className="bg-cyber-darkest">
-                        {field.label}
+                    {majors.map(major => (
+                      <option key={major.value} value={major.value} className="bg-cyber-darkest">
+                        {major.label}
                       </option>
                     ))}
                   </select>
-                  {errors.field && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.field}</span>}
+                  {errors.major && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.major}</span>}
                 </div>
 
-                {/* Show level only if field is selected and not prep years */}
-                {formData.field && !['prepa-1', 'prepa-2'].includes(formData.field) && (
+                {/* Show academicYear only if major is selected and not prep years */}
+                {formData.major && !['Prepa-1', 'Prepa-2'].includes(formData.major) && (
                   <div>
                     <label className="block font-rajdhani text-gray-300 mb-2">Niveau d'Études *</label>
                     <select
-                      name="level"
-                      value={formData.level}
+                      name="academicYear"
+                      value={formData.academicYear}
                       onChange={handleInputChange}
                       className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani focus:outline-none focus:ring-2 transition-all duration-300 ${
-                        errors.level ? 'border-red-400 focus:ring-red-400/50' : 'border-purple-400/30 focus:ring-purple-400/50 focus:border-purple-400'
+                        errors.academicYear ? 'border-red-400 focus:ring-red-400/50' : 'border-purple-400/30 focus:ring-purple-400/50 focus:border-purple-400'
                       }`}
                     >
                       <option value="">Sélectionnez votre niveau</option>
-                      {getLevels(formData.field).map(level => (
-                        <option key={level} value={level} className="bg-cyber-darkest">{level}</option>
+                      {getAcademicYears(formData.major).map(year => (
+                        <option key={year} value={year} className="bg-cyber-darkest">{year}</option>
                       ))}
                     </select>
-                    {errors.level && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.level}</span>}
+                    {errors.academicYear && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.academicYear}</span>}
                   </div>
                 )}
               </div>
@@ -496,7 +602,7 @@ const InscriptionPage = () => {
               <div>
                 <label className="block font-rajdhani text-gray-300 mb-4">Centres d'Intérêt Techniques</label>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                  {interests.map(interest => (
+                  {interestsList.map(interest => (
                     <div
                       key={interest}
                       onClick={() => handleInterestChange(interest)}
@@ -547,7 +653,7 @@ const InscriptionPage = () => {
                   </>
                 ) : (
                   <>
-                    <Mail className="w-5 h-5" />
+                    <UserCheck className="w-5 h-5" />
                     <span>CONFIRMER L'INSCRIPTION</span>
                   </>
                 )}
@@ -578,10 +684,10 @@ const InscriptionPage = () => {
           </div>
           
           <div className="bg-black/30 border border-green-400/20 rounded-lg p-6">
-            <CheckCircle className="w-8 h-8 text-yellow-400 mb-3" />
-            <h4 className="font-orbitron font-semibold text-yellow-400 mb-2">Contact Équipe</h4>
+            <Lock className="w-8 h-8 text-yellow-400 mb-3" />
+            <h4 className="font-orbitron font-semibold text-yellow-400 mb-2">Compte Sécurisé</h4>
             <p className="font-rajdhani text-gray-300 text-sm">
-              Suivi personnalisé sous 48h maximum
+              Accès personnel à votre espace membre
             </p>
           </div>
         </div>

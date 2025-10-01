@@ -1,329 +1,232 @@
 import React, { useState } from 'react';
-import { Mail, User, Phone, Calendar, MapPin, GraduationCap, Code, Loader2, CheckCircle, Home, LogIn, MessageCircle, Lock, UserCheck } from 'lucide-react';
+import { Lock, DollarSign, Search, CheckCircle, User, Mail, Phone, Calendar, CreditCard, LogOut, Shield, Receipt, AlertCircle } from 'lucide-react';
 
-const InscriptionPage = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    gender: '',
-    password: '',
-    confirmPassword: '',
-    university: 'ENSA El Jadida',
-    major: '',
-    academicYear: '',
-    programmingExperience: '',
-    interests: [],
-    agreeTerms: false
-  });
-
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const interestsList = [
-    'Web Development',
-    'Mobile Development', 
-    'Data Science',
-    'Artificial Intelligence',
-    'Machine Learning',
-    'Deep Learning',
-    'Computer Vision',
-    'Natural Language Processing',
-    'Cybersecurity',
-    'Ethical Hacking',
-    'Penetration Testing',
-    'Network Security',
-    'Game Development',
-    'Unity Development',
-    'Unreal Engine',
-    'UI/UX Design',
-    'Graphic Design',
-    'DevOps',
-    'Cloud Computing',
-    'Docker & Kubernetes',
-    'Blockchain',
-    'Cryptocurrency',
-    'IoT (Internet of Things)',
-    'Robotics',
-    'Arduino & Raspberry Pi',
-    'Embedded Systems',
-    '3D Modeling',
-    'Animation',
-    'Digital Marketing',
-    'E-commerce',
-    'Project Management',
-    'Agile/Scrum',
-    'Database Design',
-    'Big Data',
-    'Virtual Reality',
-    'Augmented Reality'
-  ];
-
-  const majors = [
-    { value: 'ISIC', label: 'Ingénierie des systèmes d\'information et de communication (ISIC)' },
-    { value: 'G2E', label: 'Génie Energétique et Electrique (G2E)' },
-    { value: 'GI', label: 'Génie Industriel (GI)' },
-    { value: '2ITE', label: 'Ingénierie Informatique et Technologies émergentes (2ITE)' },
-    { value: 'GC', label: 'Génie Civil (GC)' },
-    { value: 'CCN', label: 'Cybersécurité et Confiance Numérique (CCN)' },
-    { value: 'Master-AI', label: 'Master Intelligence Artificielle' },
-    { value: 'Prepa-1', label: '1ère année Cycle Préparatoire' },
-    { value: 'Prepa-2', label: '2ème année Cycle Préparatoire' }
-  ];
-
-  const getAcademicYears = (selectedMajor) => {
-    if (selectedMajor === 'Prepa-1' || selectedMajor === 'Prepa-2') {
-      return [];
-    }
-    if (selectedMajor === 'Master-AI') {
-      return ['Master 1', 'Master 2'];
-    }
-    return ['1ère année', '2ème année', '3ème année'];
-  };
-
-  const genderOptions = [
-    { value: 'male', label: 'Homme' },
-    { value: 'female', label: 'Femme' }
-  ];
-
-  const programmingLevels = [
-    { value: 'none', label: 'Aucune expérience' },
-    { value: 'beginner', label: 'Débutant (0-6 mois)' },
-    { value: 'basic', label: 'Basique (6 mois - 1 an)' },
-    { value: 'intermediate', label: 'Intermédiaire (1-2 ans)' },
-    { value: 'good', label: 'Bon niveau (2-3 ans)' },
-    { value: 'advanced', label: 'Avancé (3-5 ans)' },
-    { value: 'expert', label: 'Expert (5+ ans)' },
-    { value: 'professional', label: 'Professionnel (Expérience en entreprise)' }
-  ];
-
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    
-    if (name === 'major') {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value,
-        academicYear: '' 
-      }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: type === 'checkbox' ? checked : value
-      }));
-    }
-    
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
-    }
-  };
-
-  const handleInterestChange = (interest) => {
-    setFormData(prev => ({
-      ...prev,
-      interests: prev.interests.includes(interest)
-        ? prev.interests.filter(i => i !== interest)
-        : [...prev.interests, interest]
-    }));
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    // Required fields validation
-    if (!formData.firstName.trim()) newErrors.firstName = 'Le prénom est requis';
-    if (!formData.lastName.trim()) newErrors.lastName = 'Le nom est requis';
-    if (!formData.email.trim()) {
-      newErrors.email = 'L\'email est requis';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Format d\'email invalide';
-    }
-    if (!formData.phoneNumber.trim()) newErrors.phoneNumber = 'Le téléphone est requis';
-    if (!formData.gender) newErrors.gender = 'Le genre est requis';
-    if (!formData.major) newErrors.major = 'La filière est requise';
-    if (!formData.password) newErrors.password = 'Le mot de passe est requis';
-    if (!formData.confirmPassword) newErrors.confirmPassword = 'Confirmez votre mot de passe';
-    if (!formData.agreeTerms) newErrors.agreeTerms = 'Vous devez accepter les conditions';
-
-    // Password validation
-    if (formData.password && formData.password.length < 6) {
-      newErrors.password = 'Le mot de passe doit contenir au moins 6 caractères';
-    }
-    if (formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Les mots de passe ne correspondent pas';
-    }
-
-    // Only validate academicYear if major requires it
-    const selectedMajor = majors.find(m => m.value === formData.major);
-    if (selectedMajor && !['Prepa-1', 'Prepa-2'].includes(formData.major) && !formData.academicYear) {
-      newErrors.academicYear = 'Le niveau d\'études est requis';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async () => {
-  if (!validateForm()) return;
-
-  setIsSubmitting(true);
+const Inscription = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authData, setAuthData] = useState({ email: '', pin: '' });
+  const [loggedUser, setLoggedUser] = useState(null);
+  const [authError, setAuthError] = useState('');
   
-  try {
-    // Préparer les données pour Google Apps Script
-    const googleSheetData = {
-      email: formData.email,
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      phoneNumber: formData.phoneNumber,
-      gender: formData.gender,
-      major: formData.major,
-      academicYear: formData.academicYear || formData.major,
-      programmingExperience: formData.programmingExperience,
-      interests: formData.interests.join(', ')
-    };
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedMember, setSelectedMember] = useState(null);
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+  
+  const [paymentData, setPaymentData] = useState({
+    amount: '100',
+    paymentMethod: 'especes',
+    notes: ''
+  });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [receiptData, setReceiptData] = useState(null);
 
-    console.log('Sending data to Google Sheets:', googleSheetData);
+  // URL de votre Google Apps Script
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzxEiGP3stOx4eY7BOz-bhFXDWjkxd75Y9NRuDgrEKZHn9gLeQRmhZhEvcgQQxSW4i6/exec';
 
-    // Remplacez cette URL par votre URL de déploiement Apps Script
-    const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyYCq1_ay-8iLgaVaY8hUE8jmsYruSHaLNvbzRx1oDP380gJUaX6U_hmCUmx1fl90/exec';
+  // Authentification du membre du bureau
+  const handleLogin = async () => {
+    if (!authData.email || !authData.pin) {
+      setAuthError('Veuillez remplir tous les champs');
+      return;
+    }
 
-    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(googleSheetData),
-      mode: 'no-cors' // Important pour éviter les erreurs CORS
-    });
-
-    // Avec mode 'no-cors', on ne peut pas lire la réponse
-    // On considère que ça a marché si aucune erreur n'est levée
-    console.log('Data sent to Google Sheets successfully');
-    setIsSubmitted(true);
-    
-    // Optionnel : Envoyer aussi à votre backend local
     try {
-      await fetch('http://localhost:8081/api/v1/auth/signup', {
+      const response = await fetch(`${SCRIPT_URL}?action=authenticate`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: formData.email,
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          phoneNumber: formData.phoneNumber,
-          gender: formData.gender,
-          major: formData.major,
-          academicYear: formData.academicYear || formData.major,
-          interests: formData.interests.join(', '),
-          password: formData.password
+          email: authData.email,
+          pin: authData.pin
         })
       });
-    } catch (backendError) {
-      console.log('Backend not available, but Google Sheets worked');
-    }
-    
-  } catch (error) {
-    console.error('Error submitting form:', error);
-    alert('Une erreur est survenue. Veuillez réessayer.');
-  } finally {
-    setIsSubmitting(false);
-  }
-};
 
-  const resetForm = () => {
-    setIsSubmitted(false);
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phoneNumber: '',
-      gender: '',
-      password: '',
-      confirmPassword: '',
-      university: 'ENSA El Jadida',
-      major: '',
-      academicYear: '',
-      programmingExperience: '',
-      interests: [],
-      agreeTerms: false
-    });
+      const result = await response.json();
+      
+      if (result.success) {
+        setIsAuthenticated(true);
+        setLoggedUser(result.user);
+        setAuthError('');
+      } else {
+        setAuthError(result.message || 'Email ou PIN incorrect');
+      }
+    } catch (error) {
+      console.error('Erreur authentification:', error);
+      setAuthError('Erreur de connexion. Réessayez.');
+    }
   };
 
-  if (isSubmitted) {
+  // Recherche de membre
+  const handleSearch = async () => {
+    if (!searchQuery.trim()) return;
+
+    setIsSearching(true);
+    try {
+      const response = await fetch(`${SCRIPT_URL}?action=searchMember`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: searchQuery,
+          requesterEmail: loggedUser.email
+        })
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        setSearchResults(result.members || []);
+      }
+    } catch (error) {
+      console.error('Erreur recherche:', error);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  // Sélection d'un membre
+  const selectMember = (member) => {
+    setSelectedMember(member);
+    setSearchResults([]);
+    setSearchQuery('');
+  };
+
+  // Enregistrement du paiement
+  const handlePaymentSubmit = async () => {
+    if (!selectedMember) {
+      alert('Veuillez sélectionner un membre');
+      return;
+    }
+
+    if (!paymentData.amount || parseFloat(paymentData.amount) <= 0) {
+      alert('Montant invalide');
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      const paymentInfo = {
+        memberEmail: selectedMember.email,
+        memberName: `${selectedMember.firstName} ${selectedMember.lastName}`,
+        amount: parseFloat(paymentData.amount),
+        paymentMethod: paymentData.paymentMethod,
+        notes: paymentData.notes,
+        responsibleEmail: loggedUser.email,
+        responsibleName: loggedUser.name,
+        responsibleRole: loggedUser.role
+      };
+
+      const response = await fetch(`${SCRIPT_URL}?action=recordPayment`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(paymentInfo)
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        setReceiptData(result.receipt);
+        setPaymentSuccess(true);
+        
+        // Reset form
+        setSelectedMember(null);
+        setPaymentData({
+          amount: '100',
+          paymentMethod: 'especes',
+          notes: ''
+        });
+      } else {
+        alert('Erreur: ' + (result.message || 'Échec de l\'enregistrement'));
+      }
+    } catch (error) {
+      console.error('Erreur enregistrement paiement:', error);
+      alert('Erreur lors de l\'enregistrement. Réessayez.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Déconnexion
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setLoggedUser(null);
+    setAuthData({ email: '', pin: '' });
+    setSelectedMember(null);
+    setSearchQuery('');
+    setSearchResults([]);
+  };
+
+  // Reset après succès
+  const resetAfterSuccess = () => {
+    setPaymentSuccess(false);
+    setReceiptData(null);
+  };
+
+  // PAGE DE CONNEXION
+  if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-cyber-dark via-cyber-darker to-cyber-darkest flex items-center justify-center px-4">
-        <div className="max-w-2xl w-full text-center">
-          <div className="bg-black/40 border border-green-400/30 rounded-2xl p-12 backdrop-blur-sm">
-            <div className="mb-8">
-              <CheckCircle className="w-20 h-20 text-green-400 mx-auto mb-4 animate-pulse" />
-              <h2 className="font-orbitron text-3xl font-bold text-green-400 mb-4">
-                INSCRIPTION CONFIRMÉE
-              </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-green-400 to-transparent mx-auto"></div>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 flex items-center justify-center px-4">
+        <div className="max-w-md w-full">
+          <div className="bg-black/40 border border-blue-400/30 rounded-2xl p-8 backdrop-blur-sm">
+            <div className="text-center mb-8">
+              <Shield className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+              <h1 className="font-bold text-3xl text-white mb-2">
+                Accès Bureau AIS
+              </h1>
+              <p className="text-gray-400 text-sm">
+                Gestion des Cotisations
+              </p>
             </div>
 
-            <div className="space-y-6 text-left">
-              <div className="bg-black/30 border border-cyber-blue/20 rounded-lg p-6">
-                <h3 className="font-orbitron text-lg font-semibold text-cyber-blue mb-4">
-                  Prochaines étapes :
-                </h3>
-                <div className="space-y-3 font-rajdhani text-gray-300">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-cyber-blue rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Un email de confirmation a été envoyé à <span className="text-cyan-400">{formData.email}</span></span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Vous recevrez un QR code pour rejoindre notre groupe WhatsApp</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Notre équipe vous contactera dans les 48h pour finaliser votre adhésion</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-black/30 border border-purple-400/20 rounded-lg p-6">
-                <h3 className="font-orbitron text-lg font-semibold text-purple-400 mb-3">
-                  En attendant...
-                </h3>
-                <p className="font-rajdhani text-gray-300 mb-4">
-                  Suivez-nous sur nos réseaux sociaux pour ne rien manquer de nos activités !
-                </p>
-                <div className="flex space-x-4">
-                  <div className="bg-cyber-blue/10 border border-cyber-blue/30 rounded-lg px-4 py-2 text-cyber-blue font-rajdhani text-sm">
-                    @AIS_Club
-                  </div>
-                  <div className="bg-purple-400/10 border border-purple-400/30 rounded-lg px-4 py-2 text-purple-400 font-rajdhani text-sm">
-                    AIS LinkedIn
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 space-y-4">
-              <button
-                onClick={resetForm}
-                className="bg-gradient-to-r from-cyber-blue to-cyan-400 text-black px-8 py-3 rounded-lg font-rajdhani font-semibold hover:shadow-lg hover:shadow-cyber-blue/30 transition-all duration-300 hover:-translate-y-1"
-              >
-                Nouvelle Inscription
-              </button>
+            <div className="space-y-4">
               <div>
-                <button
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="border border-purple-400 text-purple-400 px-8 py-3 rounded-lg font-rajdhani font-semibold hover:bg-purple-400/10 transition-all duration-300 hover:-translate-y-1"
-                >
-                  Retour à l'Accueil
-                </button>
+                <label className="block text-gray-300 mb-2 text-sm">Email Officiel</label>
+                <input
+                  type="email"
+                  value={authData.email}
+                  onChange={(e) => setAuthData({...authData, email: e.target.value})}
+                  onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
+                  className="w-full bg-black/30 border border-blue-400/30 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400/50"
+                  placeholder="votre.email@example.com"
+                />
               </div>
+
+              <div>
+                <label className="block text-gray-300 mb-2 text-sm">Code PIN Personnel</label>
+                <input
+                  type="password"
+                  value={authData.pin}
+                  onChange={(e) => setAuthData({...authData, pin: e.target.value})}
+                  onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
+                  className="w-full bg-black/30 border border-blue-400/30 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400/50"
+                  placeholder="••••"
+                  maxLength="4"
+                />
+              </div>
+
+              {authError && (
+                <div className="bg-red-500/10 border border-red-400/50 rounded-lg p-3 flex items-center space-x-2">
+                  <AlertCircle className="w-5 h-5 text-red-400" />
+                  <span className="text-red-400 text-sm">{authError}</span>
+                </div>
+              )}
+
+              <button
+                onClick={handleLogin}
+                className="w-full bg-gradient-to-r from-blue-500 to-pink-500 text-white py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-400/30 transition-all duration-300"
+              >
+                <div className="flex items-center justify-center space-x-2">
+                  <Lock className="w-5 h-5" />
+                  <span>Se Connecter</span>
+                </div>
+              </button>
+            </div>
+
+            <div className="mt-6 text-center">
+              <p className="text-gray-400 text-xs">
+                Accès réservé aux membres du bureau AIS
+              </p>
             </div>
           </div>
         </div>
@@ -331,364 +234,247 @@ const InscriptionPage = () => {
     );
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-cyber-dark via-cyber-darker to-cyber-darkest py-12 px-4">
-      {/* Background Effects */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-24 left-16 w-32 h-32 border border-purple-400/20 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-24 right-20 w-40 h-40 border-2 border-cyber-blue/15 rotate-45 animate-spin-slow"></div>
-        <div className="absolute top-1/2 left-1/3 w-24 h-24 border border-cyan-400/25 rounded-full animate-bounce-slow"></div>
-      </div>
+  // PAGE DE SUCCÈS
+  if (paymentSuccess && receiptData) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 flex items-center justify-center px-4">
+        <div className="max-w-2xl w-full">
+          <div className="bg-black/40 border border-green-400/30 rounded-2xl p-8 backdrop-blur-sm">
+            <div className="text-center mb-8">
+              <CheckCircle className="w-20 h-20 text-green-400 mx-auto mb-4 animate-pulse" />
+              <h2 className="text-3xl font-bold text-green-400 mb-2">
+                Paiement Enregistré !
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-green-400 to-transparent mx-auto"></div>
+            </div>
 
-      <div className="max-w-4xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-block mb-4">
-            <span className="font-fira text-sm text-purple-400 bg-purple-400/10 px-4 py-2 rounded-full border border-purple-400/30">
-              [INSCRIPTION_PROTOCOL]
-            </span>
-          </div>
-          <h1 className="font-orbitron text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-              REJOIGNEZ LA COMMUNAUTÉ AIS
-            </span>
-          </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent mx-auto mb-6"></div>
-          <p className="font-rajdhani text-lg text-gray-300 max-w-2xl mx-auto">
-            Remplissez ce formulaire pour devenir membre du club AIS ENSA El Jadida et accéder à un écosystème 
-            d'innovation et de collaboration technologique.
-          </p>
-        </div>
-
-        {/* Navigation Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
-          <button 
-            onClick={() => window.location.href = '/'}
-            className="group flex items-center space-x-2 bg-black/40 border border-cyber-blue/30 text-cyber-blue px-6 py-3 rounded-lg font-rajdhani font-semibold hover:bg-cyber-blue/10 hover:border-cyber-blue/50 hover:shadow-lg hover:shadow-cyber-blue/20 transition-all duration-300 hover:-translate-y-1"
-          >
-            <Home className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
-            <span>Retour Accueil</span>
-          </button>
-          
-          <button 
-            onClick={() => window.location.href = '/connexion'}
-            className="group flex items-center space-x-2 bg-black/40 border border-purple-400/30 text-purple-400 px-6 py-3 rounded-lg font-rajdhani font-semibold hover:bg-purple-400/10 hover:border-purple-400/50 hover:shadow-lg hover:shadow-purple-400/20 transition-all duration-300 hover:-translate-y-1"
-          >
-            <LogIn className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
-            <span>Se Connecter</span>
-          </button>
-        </div>
-
-        {/* Form */}
-        <div className="bg-black/40 border border-cyber-blue/20 rounded-2xl p-8 backdrop-blur-sm">
-          <div className="space-y-8">
-            
-            {/* Personal Information */}
-            <div>
-              <h3 className="font-orbitron text-xl font-semibold text-cyber-blue mb-6 flex items-center space-x-3">
-                <User className="w-5 h-5" />
-                <span>Informations Personnelles</span>
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block font-rajdhani text-gray-300 mb-2">Prénom *</label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleInputChange}
-                    className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.firstName ? 'border-red-400 focus:ring-red-400/50' : 'border-cyber-blue/30 focus:ring-cyber-blue/50 focus:border-cyber-blue'
-                    }`}
-                    placeholder="Votre prénom"
-                  />
-                  {errors.firstName && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.firstName}</span>}
-                </div>
-
-                <div>
-                  <label className="block font-rajdhani text-gray-300 mb-2">Nom *</label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleInputChange}
-                    className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.lastName ? 'border-red-400 focus:ring-red-400/50' : 'border-cyber-blue/30 focus:ring-cyber-blue/50 focus:border-cyber-blue'
-                    }`}
-                    placeholder="Votre nom"
-                  />
-                  {errors.lastName && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.lastName}</span>}
-                </div>
-
-                <div>
-                  <label className="block font-rajdhani text-gray-300 mb-2">Email *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.email ? 'border-red-400 focus:ring-red-400/50' : 'border-cyber-blue/30 focus:ring-cyber-blue/50 focus:border-cyber-blue'
-                    }`}
-                    placeholder="votre.email@example.com"
-                  />
-                  {errors.email && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.email}</span>}
-                </div>
-
-                <div>
-                  <label className="block font-rajdhani text-gray-300 mb-2">Téléphone *</label>
-                  <input
-                    type="tel"
-                    name="phoneNumber"
-                    value={formData.phoneNumber}
-                    onChange={handleInputChange}
-                    className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.phoneNumber ? 'border-red-400 focus:ring-red-400/50' : 'border-cyber-blue/30 focus:ring-cyber-blue/50 focus:border-cyber-blue'
-                    }`}
-                    placeholder="+212 6 XX XX XX XX"
-                  />
-                  {errors.phoneNumber && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.phoneNumber}</span>}
-                </div>
-
-                <div>
-                  <label className="block font-rajdhani text-gray-300 mb-2">Genre *</label>
-                  <select
-                    name="gender"
-                    value={formData.gender}
-                    onChange={handleInputChange}
-                    className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.gender ? 'border-red-400 focus:ring-red-400/50' : 'border-cyber-blue/30 focus:ring-cyber-blue/50 focus:border-cyber-blue'
-                    }`}
-                  >
-                    <option value="">Sélectionnez votre genre</option>
-                    {genderOptions.map(option => (
-                      <option key={option.value} value={option.value} className="bg-cyber-darkest">
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.gender && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.gender}</span>}
-                </div>
+            <div className="bg-black/30 border border-green-400/20 rounded-lg p-6 mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-gray-400">Reçu N°</span>
+                <span className="text-green-400 font-bold">{receiptData.receiptNumber}</span>
+              </div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-gray-400">Membre</span>
+                <span className="text-white font-semibold">{receiptData.memberName}</span>
+              </div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-gray-400">Montant</span>
+                <span className="text-green-400 text-2xl font-bold">{receiptData.amount} DH</span>
+              </div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-gray-400">Méthode</span>
+                <span className="text-white capitalize">{receiptData.paymentMethod}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-400">Date</span>
+                <span className="text-white">{receiptData.date}</span>
               </div>
             </div>
 
-            {/* Security Information */}
-            <div>
-              <h3 className="font-orbitron text-xl font-semibold text-green-400 mb-6 flex items-center space-x-3">
-                <Lock className="w-5 h-5" />
-                <span>Sécurité du Compte</span>
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block font-rajdhani text-gray-300 mb-2">Mot de passe *</label>
-                  <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.password ? 'border-red-400 focus:ring-red-400/50' : 'border-green-400/30 focus:ring-green-400/50 focus:border-green-400'
-                    }`}
-                    placeholder="••••••••"
-                  />
-                  {errors.password && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.password}</span>}
-                </div>
-
-                <div>
-                  <label className="block font-rajdhani text-gray-300 mb-2">Confirmer le mot de passe *</label>
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleInputChange}
-                    className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.confirmPassword ? 'border-red-400 focus:ring-red-400/50' : 'border-green-400/30 focus:ring-green-400/50 focus:border-green-400'
-                    }`}
-                    placeholder="••••••••"
-                  />
-                  {errors.confirmPassword && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.confirmPassword}</span>}
-                </div>
-              </div>
-            </div>
-
-            {/* Academic Information */}
-            <div>
-              <h3 className="font-orbitron text-xl font-semibold text-purple-400 mb-6 flex items-center space-x-3">
-                <GraduationCap className="w-5 h-5" />
-                <span>Informations Académiques</span>
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block font-rajdhani text-gray-300 mb-2">Établissement</label>
-                  <input
-                    type="text"
-                    name="university"
-                    value={formData.university}
-                    readOnly
-                    className="w-full bg-black/20 border border-purple-400/30 rounded-lg px-4 py-3 text-gray-400 font-rajdhani cursor-not-allowed"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-rajdhani text-gray-300 mb-2">Filière *</label>
-                  <select
-                    name="major"
-                    value={formData.major}
-                    onChange={handleInputChange}
-                    className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani focus:outline-none focus:ring-2 transition-all duration-300 ${
-                      errors.major ? 'border-red-400 focus:ring-red-400/50' : 'border-purple-400/30 focus:ring-purple-400/50 focus:border-purple-400'
-                    }`}
-                  >
-                    <option value="">Sélectionnez votre filière</option>
-                    {majors.map(major => (
-                      <option key={major.value} value={major.value} className="bg-cyber-darkest">
-                        {major.label}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.major && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.major}</span>}
-                </div>
-
-                {/* Show academicYear only if major is selected and not prep years */}
-                {formData.major && !['Prepa-1', 'Prepa-2'].includes(formData.major) && (
-                  <div>
-                    <label className="block font-rajdhani text-gray-300 mb-2">Niveau d'Études *</label>
-                    <select
-                      name="academicYear"
-                      value={formData.academicYear}
-                      onChange={handleInputChange}
-                      className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white font-rajdhani focus:outline-none focus:ring-2 transition-all duration-300 ${
-                        errors.academicYear ? 'border-red-400 focus:ring-red-400/50' : 'border-purple-400/30 focus:ring-purple-400/50 focus:border-purple-400'
-                      }`}
-                    >
-                      <option value="">Sélectionnez votre niveau</option>
-                      {getAcademicYears(formData.major).map(year => (
-                        <option key={year} value={year} className="bg-cyber-darkest">{year}</option>
-                      ))}
-                    </select>
-                    {errors.academicYear && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.academicYear}</span>}
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Technical Information */}
-            <div>
-              <h3 className="font-orbitron text-xl font-semibold text-cyan-400 mb-6 flex items-center space-x-3">
-                <Code className="w-5 h-5" />
-                <span>Expérience Technique</span>
-              </h3>
-              
-              <div className="mb-6">
-                <label className="block font-rajdhani text-gray-300 mb-2">Niveau de Programmation</label>
-                <select
-                  name="programmingExperience"
-                  value={formData.programmingExperience}
-                  onChange={handleInputChange}
-                  className="w-full bg-black/30 border border-cyan-400/30 rounded-lg px-4 py-3 text-white font-rajdhani focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400 transition-all duration-300"
-                >
-                  <option value="">Sélectionnez votre niveau</option>
-                  {programmingLevels.map(level => (
-                    <option key={level.value} value={level.value} className="bg-cyber-darkest">
-                      {level.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block font-rajdhani text-gray-300 mb-4">Centres d'Intérêt Techniques</label>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                  {interestsList.map(interest => (
-                    <div
-                      key={interest}
-                      onClick={() => handleInterestChange(interest)}
-                      className={`cursor-pointer border rounded-lg px-3 py-2 text-center font-rajdhani text-xs transition-all duration-300 hover:scale-105 ${
-                        formData.interests.includes(interest)
-                          ? 'bg-cyan-400/20 border-cyan-400/50 text-cyan-400'
-                          : 'bg-black/30 border-gray-600/30 text-gray-300 hover:border-cyan-400/30'
-                      }`}
-                    >
-                      {interest}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Terms and Conditions */}
-            <div className="bg-black/30 border border-purple-400/20 rounded-lg p-6">
-              <div className="flex items-start space-x-3">
-                <input
-                  type="checkbox"
-                  name="agreeTerms"
-                  checked={formData.agreeTerms}
-                  onChange={handleInputChange}
-                  className="mt-1 w-4 h-4 text-purple-400 bg-black border-purple-400 rounded focus:ring-purple-400/50"
-                />
-                <div className="flex-1">
-                  <label className="font-rajdhani text-gray-300 text-sm">
-                    J'accepte les conditions d'adhésion au club AIS et autorise le traitement de mes 
-                    données personnelles conformément à la politique de confidentialité. *
-                  </label>
-                  {errors.agreeTerms && <span className="text-red-400 text-sm font-rajdhani mt-1 block">{errors.agreeTerms}</span>}
-                </div>
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <div className="text-center">
-              <button
-                onClick={handleSubmit}
-                disabled={isSubmitting}
-                className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-12 py-4 rounded-lg font-rajdhani font-semibold text-lg hover:shadow-lg hover:shadow-purple-400/30 transition-all duration-300 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none flex items-center space-x-3 mx-auto"
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>Traitement en cours...</span>
-                  </>
-                ) : (
-                  <>
-                    <UserCheck className="w-5 h-5" />
-                    <span>CONFIRMER L'INSCRIPTION</span>
-                  </>
-                )}
-              </button>              
-              <p className="font-rajdhani text-gray-400 text-sm mt-4">
-                Vous recevrez un email de confirmation avec le QR code WhatsApp
+            <div className="bg-blue-500/10 border border-blue-400/30 rounded-lg p-4 mb-6">
+              <p className="text-blue-400 text-sm text-center">
+                ✅ Un email de confirmation avec le reçu a été envoyé à <br />
+                <span className="font-semibold">{receiptData.memberEmail}</span>
               </p>
             </div>
+
+            <div className="text-center space-y-3">
+              <button
+                onClick={resetAfterSuccess}
+                className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 w-full"
+              >
+                Enregistrer un Autre Paiement
+              </button>
+              <button
+                onClick={handleLogout}
+                className="border border-gray-500 text-gray-300 px-8 py-3 rounded-lg font-semibold hover:bg-gray-500/10 transition-all duration-300 w-full"
+              >
+                Se Déconnecter
+              </button>
+            </div>
           </div>
         </div>
+      </div>
+    );
+  }
 
-        {/* Info Panel */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-black/30 border border-cyber-blue/20 rounded-lg p-6">
-            <Mail className="w-8 h-8 text-cyber-blue mb-3" />
-            <h4 className="font-orbitron font-semibold text-cyber-blue mb-2">Confirmation Email</h4>
-            <p className="font-rajdhani text-gray-300 text-sm">
-              Vérifiez votre boîte mail après l'inscription
-            </p>
+  // PAGE PRINCIPALE - GESTION DES PAIEMENTS
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 py-8 px-4">
+      {/* Header */}
+      <div className="max-w-6xl mx-auto mb-8">
+        <div className="bg-black/40 border border-blue-400/30 rounded-lg p-4 flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <Shield className="w-8 h-8 text-blue-400" />
+            <div>
+              <h2 className="text-white font-semibold">{loggedUser?.name}</h2>
+              <p className="text-gray-400 text-sm">{loggedUser?.role}</p>
+            </div>
           </div>
+          <button
+            onClick={handleLogout}
+            className="flex items-center space-x-2 bg-red-500/20 border border-red-400/30 text-red-400 px-4 py-2 rounded-lg hover:bg-red-500/30 transition-all duration-300"
+          >
+            <LogOut className="w-4 h-4" />
+            <span>Déconnexion</span>
+          </button>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
-          <div className="bg-black/30 border border-purple-400/20 rounded-lg p-6">
-            <MessageCircle className="w-8 h-8 text-green-400 mb-3" />
-            <h4 className="font-orbitron font-semibold text-green-400 mb-2">WhatsApp Group</h4>
-            <p className="font-rajdhani text-gray-300 text-sm">
-              QR code inclus dans l'email de confirmation
-            </p>
+          {/* Section Recherche */}
+          <div className="bg-black/40 border border-blue-400/30 rounded-2xl p-6 backdrop-blur-sm">
+            <h3 className="text-2xl font-bold text-blue-400 mb-6 flex items-center space-x-2">
+              <Search className="w-6 h-6" />
+              <span>Rechercher un Membre</span>
+            </h3>
+
+            <div className="mb-4">
+              <div className="flex space-x-2">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                  placeholder="Nom, email ou téléphone..."
+                  className="flex-1 bg-black/30 border border-blue-400/30 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400/50"
+                />
+                <button
+                  onClick={handleSearch}
+                  disabled={isSearching}
+                  className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-all duration-300 disabled:opacity-50"
+                >
+                  {isSearching ? '...' : 'Chercher'}
+                </button>
+              </div>
+            </div>
+
+            {/* Résultats de recherche */}
+            {searchResults.length > 0 && (
+              <div className="space-y-2 mb-4">
+                {searchResults.map((member, index) => (
+                  <div
+                    key={index}
+                    onClick={() => selectMember(member)}
+                    className="bg-black/30 border border-blue-400/20 rounded-lg p-4 cursor-pointer hover:bg-blue-500/10 hover:border-blue-400/50 transition-all duration-300"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-white font-semibold">{member.firstName} {member.lastName}</p>
+                        <p className="text-gray-400 text-sm">{member.email}</p>
+                        <p className="text-gray-500 text-xs">{member.major} - {member.academicYear}</p>
+                      </div>
+                      <div className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        member.paidStatus === 'OUI' 
+                          ? 'bg-green-500/20 text-green-400 border border-green-400/30' 
+                          : 'bg-red-500/20 text-red-400 border border-red-400/30'
+                      }`}>
+                        {member.paidStatus === 'OUI' ? 'Payé' : 'Non Payé'}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Membre sélectionné */}
+            {selectedMember && (
+              <div className="bg-gradient-to-r from-blue-500/20 to-pink-500/20 border border-blue-400/50 rounded-lg p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="text-white font-semibold">Membre Sélectionné</h4>
+                  <button
+                    onClick={() => setSelectedMember(null)}
+                    className="text-red-400 text-sm hover:text-red-300"
+                  >
+                    Annuler
+                  </button>
+                </div>
+                <div className="space-y-1 text-sm">
+                  <p className="text-white">{selectedMember.firstName} {selectedMember.lastName}</p>
+                  <p className="text-gray-300">{selectedMember.email}</p>
+                  <p className="text-gray-300">{selectedMember.phoneNumber}</p>
+                  <p className="text-gray-400">{selectedMember.major} - {selectedMember.academicYear}</p>
+                </div>
+              </div>
+            )}
           </div>
-          
-          <div className="bg-black/30 border border-green-400/20 rounded-lg p-6">
-            <Lock className="w-8 h-8 text-yellow-400 mb-3" />
-            <h4 className="font-orbitron font-semibold text-yellow-400 mb-2">Compte Sécurisé</h4>
-            <p className="font-rajdhani text-gray-300 text-sm">
-              Accès personnel à votre espace membre
-            </p>
+
+          {/* Section Enregistrement Paiement */}
+          <div className="bg-black/40 border border-green-400/30 rounded-2xl p-6 backdrop-blur-sm">
+            <h3 className="text-2xl font-bold text-green-400 mb-6 flex items-center space-x-2">
+              <DollarSign className="w-6 h-6" />
+              <span>Enregistrer le Paiement</span>
+            </h3>
+
+            {!selectedMember ? (
+              <div className="text-center py-12">
+                <User className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+                <p className="text-gray-400">Sélectionnez d'abord un membre</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-gray-300 mb-2">Montant (DH)</label>
+                  <input
+                    type="number"
+                    value={paymentData.amount}
+                    onChange={(e) => setPaymentData({...paymentData, amount: e.target.value})}
+                    className="w-full bg-black/30 border border-green-400/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-400/50"
+                    placeholder="100"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-300 mb-2">Méthode de Paiement</label>
+                  <select
+                    value={paymentData.paymentMethod}
+                    onChange={(e) => setPaymentData({...paymentData, paymentMethod: e.target.value})}
+                    className="w-full bg-black/30 border border-green-400/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-400/50"
+                  >
+                    <option value="especes">Espèces</option>
+                    <option value="virement">Virement Bancaire</option>
+                    <option value="mobile">Paiement Mobile</option>
+                    <option value="cheque">Chèque</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-gray-300 mb-2">Notes (optionnel)</label>
+                  <textarea
+                    value={paymentData.notes}
+                    onChange={(e) => setPaymentData({...paymentData, notes: e.target.value})}
+                    className="w-full bg-black/30 border border-green-400/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-400/50"
+                    rows="3"
+                    placeholder="Remarques..."
+                  />
+                </div>
+
+                <div className="bg-blue-500/10 border border-blue-400/30 rounded-lg p-4">
+                  <p className="text-sm text-gray-300 mb-1">Enregistré par:</p>
+                  <p className="text-white font-semibold">{loggedUser?.name} ({loggedUser?.role})</p>
+                </div>
+
+                <button
+                  onClick={handlePaymentSubmit}
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-4 rounded-lg font-semibold hover:shadow-lg hover:shadow-green-400/30 transition-all duration-300 disabled:opacity-50 flex items-center justify-center space-x-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <span>Enregistrement...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Receipt className="w-5 h-5" />
+                      <span>Confirmer le Paiement</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -696,4 +482,4 @@ const InscriptionPage = () => {
   );
 };
 
-export default InscriptionPage;
+export default Inscription;

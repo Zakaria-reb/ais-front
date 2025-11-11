@@ -5,6 +5,8 @@ import LoginPage from './pages/Login.jsx';
 import MembersArea from './members/App';
 import RequireAuth from './components/RequireAuth';
 import './members/index.css';
+import CellRegistration from './pages/CellRegistration';
+
 
 function Main() {
 
@@ -13,6 +15,7 @@ function Main() {
   <Route path='/' element={<App />} />
   <Route path='/inscription' element={<InscriptionPage />} />
   <Route path='/connexion' element={<LoginPage />} />
+    <Route path='/CellRegistration' element={<CellRegistration />} />
   <Route path='/members/*' element={<RequireAuth><MembersArea /></RequireAuth>} />
     </Routes>
   )

@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { Users, Code, Brain, Shield, Calendar, DollarSign, Radio, CheckCircle, AlertCircle, Send, Loader } from 'lucide-react';
 
-const CellRegistration = () => {
+const CelluleSelection = () => {
+  const niveaux = [
+    { id: 'debutant', name: 'Débutant' },
+    { id: 'intermediaire', name: 'Intermédiaire' },
+    { id: 'avance', name: 'Avancé' }
+  ];
+  
   const [formData, setFormData] = useState({
     email: '',
     firstName: '',
@@ -17,7 +23,8 @@ const CellRegistration = () => {
   
   const [projetChoice, setProjetChoice] = useState({
     equipe: '',
-    project: ''
+    project: '',
+    niveau: ''
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -25,7 +32,7 @@ const CellRegistration = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [confirmationData, setConfirmationData] = useState(null);
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbymky6euWwhZZZHLwwzg0tyS3wz_-hYHe-ljnqNzbcjDr7SWGtQvHqEPOTi9NaFBtIkIg/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyssg6rW8B5q1alGdS6jGWpDizXQyVNz-CyRlEWWq41clWycuaqzlhU-DH8HgDIck0_/exec';
 
   const projetOptions = {
     dev: {
@@ -62,7 +69,7 @@ const CellRegistration = () => {
     }));
     
     if (cell === 'projet' && selectedCells.projet) {
-      setProjetChoice({ equipe: '', project: '' });
+      setProjetChoice({ equipe: '', project: '', niveau: '' });
     }
   };
 
@@ -87,9 +94,10 @@ const CellRegistration = () => {
     }
     
     if (selectedCells.projet && (!projetChoice.equipe || !projetChoice.project)) {
-      setErrorMessage('Veuillez compléter tous les champs de la cellule Projet');
-      return;
-    }
+  setErrorMessage('Veuillez choisir une équipe et un projet');
+  return;
+}
+
 
     setIsSubmitting(true);
 
@@ -107,39 +115,38 @@ const CellRegistration = () => {
         },
         projetDetails: selectedCells.projet ? {
           equipe: projetChoice.equipe,
-          project: projetChoice.project
+          project: projetChoice.project,
+          niveau: projetChoice.niveau
         } : null
       };
 
-      // Uncomment this block when ready to use the real API
-      /*
-      const response = await fetch(SCRIPT_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      const result = await response.json();
+      // Créer un formulaire caché pour envoyer les données
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = SCRIPT_URL;
+      form.target = 'hidden_iframe';
       
-      if (result.success) {
-        setConfirmationData({
-          name: `${formData.firstName} ${formData.lastName}`,
-          email: formData.email,
-          cells: Object.keys(selectedCells).filter(k => selectedCells[k]),
-          projetInfo: selectedCells.projet ? projetChoice : null
-        });
-        setSubmitSuccess(true);
-      } else {
-        setErrorMessage(result.message || 'Erreur lors de l\'inscription');
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'data';
+      input.value = JSON.stringify(payload);
+      form.appendChild(input);
+      
+      // Créer un iframe caché pour recevoir la réponse
+      let iframe = document.getElementById('hidden_iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.id = 'hidden_iframe';
+        iframe.name = 'hidden_iframe';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
       }
-      */
-
-      // Simulation for testing (remove when API is ready)
-      console.log('Payload to send:', payload);
-      console.log('Script URL:', SCRIPT_URL);
       
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+
+      // Simuler le succès après un délai (Google Apps Script ne retourne pas de réponse lisible en CORS)
       setTimeout(() => {
         setConfirmationData({
           name: `${formData.firstName} ${formData.lastName}`,
@@ -149,11 +156,11 @@ const CellRegistration = () => {
         });
         setSubmitSuccess(true);
         setIsSubmitting(false);
-      }, 1500);
+      }, 2000);
 
     } catch (error) {
       console.error('Erreur:', error);
-      setErrorMessage('Erreur de connexion. Veuillez réessayer.');
+      setErrorMessage('Erreur lors de l\'envoi. Veuillez réessayer.');
       setIsSubmitting(false);
     }
   };
@@ -161,7 +168,7 @@ const CellRegistration = () => {
   const resetForm = () => {
     setFormData({ email: '', firstName: '', lastName: '' });
     setSelectedCells({ projet: false, sponsoring: false, media: false, events: false });
-    setProjetChoice({ equipe: '', project: '' });
+    setProjetChoice({ equipe: '', project: '', niveau: '' });
     setSubmitSuccess(false);
     setConfirmationData(null);
     setErrorMessage('');
@@ -201,7 +208,7 @@ const CellRegistration = () => {
                     ))}
                   </div>
                 </div>
-                {confirmationData.projetInfo && (
+                {confirmationData.projetInfo && confirmationData.projetInfo.equipe && (
                   <div className="pt-3 border-t border-gray-700">
                     <span className="text-gray-400 text-sm mb-2 block">Détails Projet</span>
                     <div className="space-y-1">
@@ -216,11 +223,7 @@ const CellRegistration = () => {
                         }
                       </p>
                       <p className="text-white text-sm">
-                        <span className="text-gray-400">Niveau:</span> {
-                          projetOptions[confirmationData.projetInfo.equipe]?.projects.find(
-                            p => p.id === confirmationData.projetInfo.project
-                          )?.niveau
-                        }
+                        <span className="text-gray-400">Niveau:</span> {confirmationData.projetInfo.niveau}
                       </p>
                     </div>
                   </div>
@@ -437,22 +440,15 @@ const CellRegistration = () => {
                       {projetOptions[projetChoice.equipe].projects.map(project => (
                         <div
                           key={project.id}
-                          onClick={() => setProjetChoice({...projetChoice, project: project.id})}
+                          onClick={() => setProjetChoice({...projetChoice, project: project.id, niveau: project.niveau})}
                           className={`cursor-pointer p-3 rounded-lg border-2 transition-all ${
                             projetChoice.project === project.id
                               ? 'bg-blue-400/20 border-blue-400'
                               : 'bg-black/30 border-gray-600 hover:border-blue-400/50'
                           }`}
                         >
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <p className="text-white text-sm font-medium">{project.name}</p>
-                              <p className="text-gray-400 text-xs mt-1">Niveau: {project.niveau}</p>
-                            </div>
-                            {projetChoice.project === project.id && (
-                              <CheckCircle className="w-5 h-5 text-blue-400" />
-                            )}
-                          </div>
+                          <p className="text-white text-sm font-medium">{project.name}</p>
+                          <p className="text-gray-400 text-xs mt-1">Niveau: {project.niveau}</p>
                         </div>
                       ))}
                     </div>
@@ -494,4 +490,4 @@ const CellRegistration = () => {
   );
 };
 
-export default CellRegistration;
+export default CelluleSelection;

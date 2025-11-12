@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import { Users, Code, Brain, Shield, Calendar, DollarSign, Radio, CheckCircle, AlertCircle, Send, Loader } from 'lucide-react';
 
 const CelluleSelection = () => {
-  const niveaux = [
-    { id: 'debutant', name: 'Débutant' },
-    { id: 'intermediaire', name: 'Intermédiaire' },
-    { id: 'avance', name: 'Avancé' }
-  ];
-  
   const [formData, setFormData] = useState({
     email: '',
     firstName: '',
@@ -32,7 +26,7 @@ const CelluleSelection = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [confirmationData, setConfirmationData] = useState(null);
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyssg6rW8B5q1alGdS6jGWpDizXQyVNz-CyRlEWWq41clWycuaqzlhU-DH8HgDIck0_/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzp5n-yM8f8ui4YlTiS0mDK1u-WvXlkWInTMlh3parBTK6LevfozJBKiNXSetPmJRhl/exec';
 
   const projetOptions = {
     dev: {
@@ -94,10 +88,9 @@ const CelluleSelection = () => {
     }
     
     if (selectedCells.projet && (!projetChoice.equipe || !projetChoice.project)) {
-  setErrorMessage('Veuillez choisir une équipe et un projet');
-  return;
-}
-
+      setErrorMessage('Veuillez choisir une équipe et un projet');
+      return;
+    }
 
     setIsSubmitting(true);
 
@@ -120,34 +113,18 @@ const CelluleSelection = () => {
         } : null
       };
 
-      // Créer un formulaire caché pour envoyer les données
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = SCRIPT_URL;
-      form.target = 'hidden_iframe';
-      
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = 'data';
-      input.value = JSON.stringify(payload);
-      form.appendChild(input);
-      
-      // Créer un iframe caché pour recevoir la réponse
-      let iframe = document.getElementById('hidden_iframe');
-      if (!iframe) {
-        iframe = document.createElement('iframe');
-        iframe.id = 'hidden_iframe';
-        iframe.name = 'hidden_iframe';
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-      }
-      
-      document.body.appendChild(form);
-      form.submit();
-      document.body.removeChild(form);
+      // Utiliser fetch avec la méthode GET pour contourner les restrictions CORS
+      const response = await fetch(SCRIPT_URL + '?' + new URLSearchParams({
+        action: 'registerCellSelection',
+        data: JSON.stringify(payload)
+      }), {
+        method: 'GET',
+        redirect: 'follow'
+      });
 
-      // Simuler le succès après un délai (Google Apps Script ne retourne pas de réponse lisible en CORS)
-      setTimeout(() => {
+      const result = await response.json();
+
+      if (result.success) {
         setConfirmationData({
           name: `${formData.firstName} ${formData.lastName}`,
           email: formData.email,
@@ -155,12 +132,15 @@ const CelluleSelection = () => {
           projetInfo: selectedCells.projet ? projetChoice : null
         });
         setSubmitSuccess(true);
-        setIsSubmitting(false);
-      }, 2000);
+      } else {
+        setErrorMessage(result.message || 'Erreur lors de l\'inscription');
+      }
+      
+      setIsSubmitting(false);
 
     } catch (error) {
       console.error('Erreur:', error);
-      setErrorMessage('Erreur lors de l\'envoi. Veuillez réessayer.');
+      setErrorMessage('Erreur de connexion. Veuillez vérifier votre connexion internet et réessayer.');
       setIsSubmitting(false);
     }
   };

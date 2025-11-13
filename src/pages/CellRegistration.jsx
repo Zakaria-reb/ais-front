@@ -26,7 +26,7 @@ const CelluleSelection = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [confirmationData, setConfirmationData] = useState(null);
 
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzHe1N34tvhqUnsXB-HYPydQ3P6sg9CRCL6I3ZEj9uxgne_tIIDxN8rdNeCS383DOA/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzC2e-WpA6VwlRowBxholnamPmR-iqaekXiaN6--qcRIjOrvqLrqeKqVedIBYzHIGcf/exec';
 
   const projetOptions = {
     dev: {
